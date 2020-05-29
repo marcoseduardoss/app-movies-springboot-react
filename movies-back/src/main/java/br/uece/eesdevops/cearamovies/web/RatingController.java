@@ -1,4 +1,4 @@
-package br.uece.eesdevops.introducaospringboot.web;
+package br.uece.eesdevops.cearamovies.web;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookLendingNotFoundException;
-import br.uece.eesdevops.introducaospringboot.domain.service.ChangeMovieRatingService;
-import br.uece.eesdevops.introducaospringboot.domain.service.RatingBookService;
-import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
-import br.uece.eesdevops.introducaospringboot.web.entity.NewMovie;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.exception.BookLendingNotFoundException;
+import br.uece.eesdevops.cearamovies.domain.service.ChangeMovieRatingService;
+import br.uece.eesdevops.cearamovies.domain.service.RatingBookService;
+import br.uece.eesdevops.cearamovies.repository.RatingRepository;
+import br.uece.eesdevops.cearamovies.web.entity.NewMovie;
 
 @RestController
 @RequestMapping("/rating")

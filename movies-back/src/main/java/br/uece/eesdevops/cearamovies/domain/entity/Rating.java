@@ -1,4 +1,4 @@
-package br.uece.eesdevops.introducaospringboot.domain.entity;
+package br.uece.eesdevops.cearamovies.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

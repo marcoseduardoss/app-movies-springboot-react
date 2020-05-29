@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 
+import br.uece.eesdevops.cearamovies.IntroducaoSpringBootApplication;
+
 class Payloads {
 
     private static ClassLoader classLoader;

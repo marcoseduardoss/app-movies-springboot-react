@@ -1,10 +1,10 @@
-package br.uece.eesdevops.introducaospringboot.domain.service;
+package br.uece.eesdevops.cearamovies.domain.service;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookAlreadyLentException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookLendingNotFoundException;
-import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.exception.BookAlreadyLentException;
+import br.uece.eesdevops.cearamovies.domain.exception.BookLendingNotFoundException;
+import br.uece.eesdevops.cearamovies.repository.RatingRepository;
+
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,17 +1,17 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Student;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookAlreadyLentException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.MovieNotFoundException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.InvalidBookLendingException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.StudentNotFoundException;
-import br.uece.eesdevops.introducaospringboot.domain.service.RatingBookService;
-import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
-import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
-import br.uece.eesdevops.introducaospringboot.repository.StudentRepository;
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.entity.Student;
+import br.uece.eesdevops.cearamovies.domain.exception.BookAlreadyLentException;
+import br.uece.eesdevops.cearamovies.domain.exception.InvalidBookLendingException;
+import br.uece.eesdevops.cearamovies.domain.exception.MovieNotFoundException;
+import br.uece.eesdevops.cearamovies.domain.exception.StudentNotFoundException;
+import br.uece.eesdevops.cearamovies.domain.service.RatingBookService;
+import br.uece.eesdevops.cearamovies.repository.MovieRepository;
+import br.uece.eesdevops.cearamovies.repository.RatingRepository;
+import br.uece.eesdevops.cearamovies.repository.StudentRepository;
+
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

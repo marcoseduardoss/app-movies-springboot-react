@@ -1,16 +1,16 @@
-package br.uece.eesdevops.introducaospringboot.domain.service;
+package br.uece.eesdevops.cearamovies.domain.service;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.exception.InvalidBookLendingException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.MovieNotFoundException;
-import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
-import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.exception.InvalidBookLendingException;
+import br.uece.eesdevops.cearamovies.domain.exception.MovieNotFoundException;
+import br.uece.eesdevops.cearamovies.repository.MovieRepository;
+import br.uece.eesdevops.cearamovies.repository.RatingRepository;
 
 @Service
 public class RatingBookService {

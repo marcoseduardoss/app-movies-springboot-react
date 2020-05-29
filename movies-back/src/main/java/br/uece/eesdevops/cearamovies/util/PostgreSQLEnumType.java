@@ -1,4 +1,4 @@
-package br.uece.eesdevops.introducaospringboot.util;
+package br.uece.eesdevops.cearamovies.util;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

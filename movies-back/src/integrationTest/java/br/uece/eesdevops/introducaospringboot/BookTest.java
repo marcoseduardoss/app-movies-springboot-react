@@ -1,7 +1,9 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
+import br.uece.eesdevops.cearamovies.IntroducaoSpringBootApplication;
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
+import br.uece.eesdevops.cearamovies.repository.MovieRepository;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;

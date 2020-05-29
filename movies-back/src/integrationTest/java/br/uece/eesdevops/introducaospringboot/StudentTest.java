@@ -1,8 +1,11 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Student;
-import br.uece.eesdevops.introducaospringboot.repository.StudentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.uece.eesdevops.cearamovies.IntroducaoSpringBootApplication;
+import br.uece.eesdevops.cearamovies.domain.entity.Student;
+import br.uece.eesdevops.cearamovies.repository.StudentRepository;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

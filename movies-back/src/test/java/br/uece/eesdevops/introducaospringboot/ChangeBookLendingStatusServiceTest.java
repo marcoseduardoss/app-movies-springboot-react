@@ -1,11 +1,12 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLendingStatus;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookAlreadyLentException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookLendingNotFoundException;
-import br.uece.eesdevops.introducaospringboot.domain.service.ChangeMovieRatingService;
-import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
+import br.uece.eesdevops.cearamovies.domain.entity.BookLendingStatus;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.exception.BookAlreadyLentException;
+import br.uece.eesdevops.cearamovies.domain.exception.BookLendingNotFoundException;
+import br.uece.eesdevops.cearamovies.domain.service.ChangeMovieRatingService;
+import br.uece.eesdevops.cearamovies.repository.RatingRepository;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;

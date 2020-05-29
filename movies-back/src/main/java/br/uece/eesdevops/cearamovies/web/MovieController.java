@@ -1,4 +1,4 @@
-package br.uece.eesdevops.introducaospringboot.web;
+package br.uece.eesdevops.cearamovies.web;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.domain.exception.MovieNotFoundException;
-import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
+import br.uece.eesdevops.cearamovies.domain.exception.MovieNotFoundException;
+import br.uece.eesdevops.cearamovies.repository.MovieRepository;
 
 @RestController
 @RequestMapping("/movies")

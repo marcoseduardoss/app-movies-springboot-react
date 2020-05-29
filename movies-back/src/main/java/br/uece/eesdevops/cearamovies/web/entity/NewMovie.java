@@ -1,4 +1,4 @@
-package br.uece.eesdevops.introducaospringboot.web.entity;
+package br.uece.eesdevops.cearamovies.web.entity;
 
 import lombok.Data;
 

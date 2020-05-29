@@ -1,4 +1,4 @@
-package br.uece.eesdevops.introducaospringboot.domain.exception;
+package br.uece.eesdevops.cearamovies.domain.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

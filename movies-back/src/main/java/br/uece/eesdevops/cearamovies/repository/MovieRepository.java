@@ -1,8 +1,9 @@
-package br.uece.eesdevops.introducaospringboot.repository;
+package br.uece.eesdevops.cearamovies.repository;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> { }

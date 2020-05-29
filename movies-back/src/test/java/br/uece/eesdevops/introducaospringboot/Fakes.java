@@ -1,9 +1,9 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
-import br.uece.eesdevops.introducaospringboot.domain.entity.Student;
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.entity.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
