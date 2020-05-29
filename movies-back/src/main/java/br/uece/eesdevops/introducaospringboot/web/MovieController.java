@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
 
 @RestController
 @RequestMapping("/movies")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MovieController {
 
     private final MovieRepository repository;

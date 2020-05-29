@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import br.uece.eesdevops.introducaospringboot.web.entity.NewMovie;
 
 @RestController
 @RequestMapping("/rating")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RatingController {
 
 	private final ModelMapper mapper = new ModelMapper();
@@ -63,8 +65,7 @@ public class RatingController {
 
 	@PatchMapping(value = "/{id}/status", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 	public ResponseEntity<Rating> patchStatus(@PathVariable Long id, @RequestBody NewMovie request) {
-		Rating mp = mapper.map(request, Rating.class);
-		Rating changed = changeBookLendingStatusService.execute(id, mp);
+		Rating changed = changeBookLendingStatusService.execute(id, mapper.map(request, Rating.class));
 		return ResponseEntity.ok(changed);
 	}
 
