@@ -1,11 +1,11 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLending;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
 import br.uece.eesdevops.introducaospringboot.domain.entity.BookLendingStatus;
 import br.uece.eesdevops.introducaospringboot.domain.exception.BookAlreadyLentException;
 import br.uece.eesdevops.introducaospringboot.domain.exception.BookLendingNotFoundException;
-import br.uece.eesdevops.introducaospringboot.domain.service.ChangeBookLendingStatusService;
-import br.uece.eesdevops.introducaospringboot.repository.BookLendingRepository;
+import br.uece.eesdevops.introducaospringboot.domain.service.ChangeMovieRatingService;
+import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
 import java.util.ArrayList;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,20 +24,20 @@ import static org.mockito.Mockito.when;
 @DisplayName("Runs all tests for domain service class responsible for changing book lending status")
 class ChangeBookLendingStatusServiceTest {
 
-    private final BookLendingRepository repository =
-            mock(BookLendingRepository.class);
+    private final RatingRepository repository =
+            mock(RatingRepository.class);
 
-    private ChangeBookLendingStatusService service;
+    private ChangeMovieRatingService service;
 
     @BeforeEach
     void beforeEach() {
-        service = new ChangeBookLendingStatusService(repository);
+        service = new ChangeMovieRatingService(repository);
     }
 
     @Test
     @DisplayName("should change book lending status to returned status successfully")
     void should_change_book_lending_status_to_returned_status_successfully() {
-        BookLending bookLending = fakeBookLending();
+        Rating bookLending = fakeBookLending();
 
         when(repository.findById(bookLending.getId()))
                 .thenReturn(Optional.of(bookLending));
@@ -45,7 +45,7 @@ class ChangeBookLendingStatusServiceTest {
         when(repository.save(bookLending))
                 .thenReturn(bookLending);
 
-        BookLending changed = service.execute(bookLending.getId(), BookLendingStatus.RETURNED);
+        Rating changed = service.execute(bookLending.getId(), BookLendingStatus.RETURNED);
 
         assertEquals(BookLendingStatus.RETURNED, changed.getStatus());
 
@@ -56,7 +56,7 @@ class ChangeBookLendingStatusServiceTest {
     @Test
     @DisplayName("should change book lending status to lent status successfully")
     void should_change_book_lending_status_to_lent_status_successfully() {
-        BookLending bookLending = fakeReturnedBookLending();
+        Rating bookLending = fakeReturnedBookLending();
 
         when(repository.findById(bookLending.getId()))
                 .thenReturn(Optional.of(bookLending));
@@ -67,7 +67,7 @@ class ChangeBookLendingStatusServiceTest {
         when(repository.save(bookLending))
                 .thenReturn(bookLending);
 
-        BookLending changed = service.execute(bookLending.getId(), BookLendingStatus.LENT);
+        Rating changed = service.execute(bookLending.getId(), BookLendingStatus.LENT);
 
         assertEquals(BookLendingStatus.LENT, changed.getStatus());
 
@@ -79,12 +79,12 @@ class ChangeBookLendingStatusServiceTest {
     @Test
     @DisplayName("should not change book lending status to same status")
     void should_not_change_book_lending_status_to_same_status() {
-        BookLending bookLending = fakeBookLending();
+        Rating bookLending = fakeBookLending();
 
         when(repository.findById(bookLending.getId()))
                 .thenReturn(Optional.of(bookLending));
 
-        BookLending changed = service.execute(bookLending.getId(), BookLendingStatus.LENT);
+        Rating changed = service.execute(bookLending.getId(), BookLendingStatus.LENT);
 
         assertEquals(BookLendingStatus.LENT, changed.getStatus());
 
@@ -94,7 +94,7 @@ class ChangeBookLendingStatusServiceTest {
     @Test
     @DisplayName("should not change book lending status to lent when the book was lent")
     void should_not_change_book_lending_status_to_lent_when_the_book_was_lent() {
-        BookLending bookLending = fakeReturnedBookLending();
+        Rating bookLending = fakeReturnedBookLending();
 
         when(repository.findById(bookLending.getId()))
                 .thenReturn(Optional.of(bookLending));
@@ -115,7 +115,7 @@ class ChangeBookLendingStatusServiceTest {
     @Test
     @DisplayName("should not change book lending status when book lending does not exist")
     void should_not_change_book_lending_status_when_book_lending_does_not_exist() {
-        BookLending bookLending = fakeBookLending();
+        Rating bookLending = fakeBookLending();
 
         when(repository.findById(bookLending.getId()))
                 .thenReturn(Optional.empty());

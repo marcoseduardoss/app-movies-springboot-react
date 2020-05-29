@@ -1,11 +1,11 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Book;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLending;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLendingStatus;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
 import br.uece.eesdevops.introducaospringboot.domain.entity.Student;
-import br.uece.eesdevops.introducaospringboot.repository.BookLendingRepository;
-import br.uece.eesdevops.introducaospringboot.repository.BookRepository;
+import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
+import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
 import br.uece.eesdevops.introducaospringboot.repository.StudentRepository;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,13 +47,13 @@ class BookLendingTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private BookRepository bookRepository;
+    private MovieRepository bookRepository;
 
     @Autowired
     private StudentRepository studentRepository;
 
     @Autowired
-    private BookLendingRepository bookLendingRepository;
+    private RatingRepository bookLendingRepository;
 
     private static EmbeddedDatabase database;
 
@@ -90,9 +90,9 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should get all books with one result")
     void should_get_all_books_with_one_result() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
-        BookLending bookLending = bookLendingRepository.save(
+        Rating bookLending = bookLendingRepository.save(
                 fakeBookLendingWithNoId(book, student)
         );
 
@@ -106,10 +106,10 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should get all books with three result")
     void should_get_all_books_with_three_result() throws Exception {
-        List<BookLending> list = new ArrayList<>();
+        List<Rating> list = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            Book book = bookRepository.save(fakeBookWithNoId());
+            Movie book = bookRepository.save(fakeBookWithNoId());
             Student student = studentRepository.save(fakeStudentWithNoId());
             list.add(fakeBookLendingWithNoId(book, student));
         }
@@ -129,9 +129,9 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should get a book lending for ID successfully")
     void should_get_a_book_lending_for_id_successfully() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
-        BookLending bookLending = bookLendingRepository.save(
+        Rating bookLending = bookLendingRepository.save(
                 fakeBookLendingWithNoId(book, student)
         );
 
@@ -144,7 +144,7 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should not get book for ID when it does not exist")
     void should_not_get_a_book_for_id_when_it_does_not_exist() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
         bookLendingRepository.save(
                 fakeBookLendingWithNoId(book, student)
@@ -162,7 +162,7 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should lent a book successfully")
     void should_lent_a_book_successfully() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
 
         JSONObject jsonObject = new JSONObject();
@@ -230,7 +230,7 @@ class BookLendingTest {
     @Test
     @DisplayName("should not lent a book when student does not exist")
     void should_not_lent_a_book_when_student_does_not_exist() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
 
         JSONObject jsonObject = new JSONObject();
 
@@ -248,7 +248,7 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should not lent a book when book is already lent")
     void should_not_lent_a_book_when_book_is_already_lent() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
         bookLendingRepository.save(fakeBookLendingWithNoId(book, student));
 
@@ -272,9 +272,9 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should change book lending status to returned successfully")
     void should_change_book_lending_status_to_returned_successfully() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
-        BookLending bookLending = bookLendingRepository.save(
+        Rating bookLending = bookLendingRepository.save(
                 fakeBookLendingWithNoId(book, student)
         );
 
@@ -294,9 +294,9 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should change book lending status to lent successfully")
     void should_change_book_lending_status_to_lent_successfully() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
         Student student = studentRepository.save(fakeStudentWithNoId());
-        BookLending bookLending = bookLendingRepository.save(
+        Rating bookLending = bookLendingRepository.save(
                 fakeBookLendingWithNoId(book, student, BookLendingStatus.RETURNED)
         );
 
@@ -316,7 +316,7 @@ class BookLendingTest {
     @Transactional
     @DisplayName("should not change book lending status when it does not exist")
     void should_not_change_book_lending_status_when_it_does_exist() throws Exception {
-        Book book = bookRepository.save(fakeBookWithNoId());
+        Movie book = bookRepository.save(fakeBookWithNoId());
 
         bookLendingRepository.save(
                 fakeBookLendingWithNoId(
@@ -325,7 +325,7 @@ class BookLendingTest {
                 )
         );
 
-        BookLending bookLending = bookLendingRepository.save(
+        Rating bookLending = bookLendingRepository.save(
                 fakeBookLendingWithNoId(
                         book,
                         studentRepository.save(fakeStudentWithNoId()),

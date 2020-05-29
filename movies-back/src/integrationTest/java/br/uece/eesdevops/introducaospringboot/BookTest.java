@@ -1,7 +1,7 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Book;
-import br.uece.eesdevops.introducaospringboot.repository.BookRepository;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
+import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ class BookTest {
     private ObjectMapper mapper;
 
     @Autowired
-    private BookRepository repository;
+    private MovieRepository repository;
 
     private static EmbeddedDatabase database;
 
@@ -78,7 +78,7 @@ class BookTest {
     @Test
     @DisplayName("should get all books with one result")
     void should_get_all_books_with_one_result() throws Exception {
-        Book book = fakeBookWithNoId();
+        Movie book = fakeBookWithNoId();
 
         book = repository.save(book);
 
@@ -94,7 +94,7 @@ class BookTest {
     @Test
     @DisplayName("should get all books with three result")
     void should_get_all_books_with_three_result() throws Exception {
-        List<Book> books = new ArrayList<>();
+        List<Movie> books = new ArrayList<>();
 
         books.add(fakeBookWithNoId());
         books.add(fakeBookWithNoId());
@@ -126,7 +126,7 @@ class BookTest {
     @Test
     @DisplayName("should get book for ID successfully")
     void should_get_a_book_for_id_successfully() throws Exception {
-        Book book = fakeBookWithNoId();
+        Movie book = fakeBookWithNoId();
 
         book = repository.save(book);
 
@@ -141,7 +141,7 @@ class BookTest {
     @Test
     @DisplayName("should not get book for ID when it does not exist")
     void should_not_get_a_book_for_id_when_it_does_not_exist() throws Exception {
-        Book book = fakeBookWithNoId();
+        Movie book = fakeBookWithNoId();
 
         repository.save(book);
 
@@ -158,7 +158,7 @@ class BookTest {
     @Test
     @DisplayName("should save a new book successfully")
     void should_save_new_book_successfully() throws Exception {
-        Book book = mapper.readValue(Payloads.newBookRequest(), Book.class);
+        Movie book = mapper.readValue(Payloads.newBookRequest(), Movie.class);
 
         MockHttpServletRequestBuilder request = post("/books")
                 .content(Payloads.newBookRequest())
@@ -176,7 +176,7 @@ class BookTest {
     @Test
     @DisplayName("should not save a new book when an error occurs")
     void should_not_save_new_book_when_an_error_occurs() throws Exception {
-        Book book = mapper.readValue(Payloads.newBookRequest(), Book.class);
+        Movie book = mapper.readValue(Payloads.newBookRequest(), Movie.class);
 
         repository.save(book);
 
@@ -199,7 +199,7 @@ class BookTest {
     @Test
     @DisplayName("should update a book successfully")
     void should_update_a_book_successfully() throws Exception {
-        Book book = mapper.readValue(Payloads.updateBookRequest(), Book.class);
+        Movie book = mapper.readValue(Payloads.updateBookRequest(), Movie.class);
 
         book = repository.save(book);
 

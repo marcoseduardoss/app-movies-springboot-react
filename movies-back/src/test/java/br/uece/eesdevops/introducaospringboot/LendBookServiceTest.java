@@ -1,16 +1,16 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Book;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLending;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLendingStatus;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
 import br.uece.eesdevops.introducaospringboot.domain.entity.Student;
 import br.uece.eesdevops.introducaospringboot.domain.exception.BookAlreadyLentException;
-import br.uece.eesdevops.introducaospringboot.domain.exception.BookNotFoundException;
+import br.uece.eesdevops.introducaospringboot.domain.exception.MovieNotFoundException;
 import br.uece.eesdevops.introducaospringboot.domain.exception.InvalidBookLendingException;
 import br.uece.eesdevops.introducaospringboot.domain.exception.StudentNotFoundException;
-import br.uece.eesdevops.introducaospringboot.domain.service.LendBookService;
-import br.uece.eesdevops.introducaospringboot.repository.BookLendingRepository;
-import br.uece.eesdevops.introducaospringboot.repository.BookRepository;
+import br.uece.eesdevops.introducaospringboot.domain.service.RatingBookService;
+import br.uece.eesdevops.introducaospringboot.repository.RatingRepository;
+import br.uece.eesdevops.introducaospringboot.repository.MovieRepository;
 import br.uece.eesdevops.introducaospringboot.repository.StudentRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,20 +31,20 @@ import static org.mockito.Mockito.when;
 @DisplayName("Runs all tests for domain service class responsible for lending a book")
 class LendBookServiceTest {
 
-    private final BookRepository bookRepository =
-            mock(BookRepository.class);
+    private final MovieRepository bookRepository =
+            mock(MovieRepository.class);
 
     private final StudentRepository studentRepository =
             mock(StudentRepository.class);
 
-    private final BookLendingRepository bookLendingRepository =
-            mock(BookLendingRepository.class);
+    private final RatingRepository bookLendingRepository =
+            mock(RatingRepository.class);
 
-    private LendBookService service;
+    private RatingBookService service;
 
     @BeforeEach
     void beforeEach() {
-        service = new LendBookService(
+        service = new RatingBookService(
                 bookRepository,
                 studentRepository,
                 bookLendingRepository
@@ -54,15 +54,15 @@ class LendBookServiceTest {
     @Test
     @DisplayName("should lend a book successfully")
     void should_lend_a_book_successfully() {
-        Book book = fakeBook();
+        Movie book = fakeBook();
         Student student = fakeStudent();
-        BookLending bookLending = fakeBookLending(book, student);
+        Rating bookLending = fakeBookLending(book, student);
 
         when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
         when(studentRepository.findById(student.getId())).thenReturn(Optional.of(student));
         when(bookLendingRepository.save(bookLending)).thenReturn(bookLending);
 
-        BookLending saved = service.execute(bookLending);
+        Rating saved = service.execute(bookLending);
 
         assertEquals(book, saved.getBook());
         assertEquals(student, saved.getStudent());
@@ -82,7 +82,7 @@ class LendBookServiceTest {
                 "Book ID is null."
         );
 
-        Book bookWithNoId = fakeBook();
+        Movie bookWithNoId = fakeBook();
         bookWithNoId.setId(null);
 
         assertThrows(
@@ -115,12 +115,12 @@ class LendBookServiceTest {
     @Test
     @DisplayName("should not lend a book when book does not exist")
     void should_not_lend_a_book_when_book_does_not_exist() {
-        Book book = fakeBook();
+        Movie book = fakeBook();
 
         when(bookRepository.findById(book.getId())).thenReturn(Optional.empty());
 
         assertThrows(
-                BookNotFoundException.class,
+                MovieNotFoundException.class,
                 () -> service.execute(fakeBookLending(book, fakeStudent())),
                 "Book for ID " + book.getId() + " does not exist."
         );
@@ -129,7 +129,7 @@ class LendBookServiceTest {
     @Test
     @DisplayName("should not lend a book when student does not exist")
     void should_not_lend_a_book_when_student_does_not_exist() {
-        Book book = fakeBook();
+        Movie book = fakeBook();
         Student student = fakeStudent();
 
         when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
@@ -145,7 +145,7 @@ class LendBookServiceTest {
     @Test
     @DisplayName("should not lend a book when book is already lent")
     void should_not_lend_a_book_when_book_is_already_lent() {
-        Book book = fakeBook();
+        Movie book = fakeBook();
         Student student = fakeStudent();
 
         when(bookRepository.findById(book.getId()))

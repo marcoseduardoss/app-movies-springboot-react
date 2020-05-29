@@ -1,8 +1,8 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.introducaospringboot.domain.entity.Book;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLending;
-import br.uece.eesdevops.introducaospringboot.domain.entity.BookLendingStatus;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Rating;
+import br.uece.eesdevops.introducaospringboot.domain.entity.Movie;
 import br.uece.eesdevops.introducaospringboot.domain.entity.Student;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ final class Fakes {
 
     private Fakes() { }
 
-    static Book fakeBook() {
-        Book book = new Book();
+    static Movie fakeBook() {
+        Movie book = new Movie();
         book.setId(1);
         book.setIsbn(generateFakeIsbn());
         book.setTitle("Fake Book");
@@ -22,8 +22,8 @@ final class Fakes {
         return book;
     }
 
-    static Book fakeBookWithNoId() {
-        Book book = fakeBook();
+    static Movie fakeBookWithNoId() {
+        Movie book = fakeBook();
         book.setId(null);
         return book;
     }
@@ -65,8 +65,8 @@ final class Fakes {
         return isbn.toString();
     }
 
-    static BookLending fakeBookLending() {
-        BookLending bookLending = new BookLending();
+    static Rating fakeBookLending() {
+        Rating bookLending = new Rating();
         bookLending.setId(1);
         bookLending.setBook(fakeBook());
         bookLending.setStudent(fakeStudent());
@@ -74,8 +74,8 @@ final class Fakes {
         return bookLending;
     }
 
-    static BookLending fakeReturnedBookLending() {
-        BookLending bookLending = new BookLending();
+    static Rating fakeReturnedBookLending() {
+        Rating bookLending = new Rating();
         bookLending.setId(1);
         bookLending.setBook(fakeBook());
         bookLending.setStudent(fakeStudent());
@@ -83,14 +83,14 @@ final class Fakes {
         return bookLending;
     }
 
-    static BookLending fakeBookLendingWithNoId() {
-        BookLending bookLending = fakeBookLending();
+    static Rating fakeBookLendingWithNoId() {
+        Rating bookLending = fakeBookLending();
         bookLending.setId(null);
         return bookLending;
     }
 
-    static BookLending fakeBookLending(Book book, Student student) {
-        BookLending bookLending = new BookLending();
+    static Rating fakeBookLending(Movie book, Student student) {
+        Rating bookLending = new Rating();
         bookLending.setId(1);
         bookLending.setBook(book);
         bookLending.setStudent(student);
@@ -98,27 +98,27 @@ final class Fakes {
         return bookLending;
     }
 
-    static BookLending fakeBookLendingWithNoId(Book book, Student student) {
-        BookLending bookLending = fakeBookLending(book, student);
+    static Rating fakeBookLendingWithNoId(Movie book, Student student) {
+        Rating bookLending = fakeBookLending(book, student);
         bookLending.setId(null);
         return bookLending;
     }
 
-    static BookLending fakeBookLendingWithNoId(Book book, Student student, BookLendingStatus status) {
-        BookLending bookLending = fakeBookLending(book, student);
+    static Rating fakeBookLendingWithNoId(Movie book, Student student, BookLendingStatus status) {
+        Rating bookLending = fakeBookLending(book, student);
         bookLending.setId(null);
         bookLending.setStatus(status);
         return bookLending;
     }
 
-    static List<BookLending> fakeBookLendingList() {
-        List<BookLending> bookLendings = new ArrayList<>();
+    static List<Rating> fakeBookLendingList() {
+        List<Rating> bookLendings = new ArrayList<>();
         bookLendings.add(fakeBookLending());
         return bookLendings;
     }
 
-    static List<BookLending> fakeBookLendingListWithLentAndReturned() {
-        List<BookLending> bookLendings = new ArrayList<>();
+    static List<Rating> fakeBookLendingListWithLentAndReturned() {
+        List<Rating> bookLendings = new ArrayList<>();
         bookLendings.add(fakeBookLending());
         bookLendings.add(fakeReturnedBookLending());
         return bookLendings;
