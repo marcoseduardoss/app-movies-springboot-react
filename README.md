@@ -1,4 +1,4 @@
-# poc-mini-mvc-java
+# Ceará Movies
 
 Projeto - Especialização em Engenharia de Software com DevOps
 
