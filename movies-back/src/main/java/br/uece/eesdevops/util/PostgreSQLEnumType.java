@@ -1,4 +1,4 @@
-package br.uece.eesdevops.cearamovies.util;
+package br.uece.eesdevops.util;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,10 +9,19 @@ import org.hibernate.type.EnumType;
 
 public class PostgreSQLEnumType extends EnumType {
 
-	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
-			throws HibernateException, SQLException {
-		
+	public void nullSafeSet(
+
+			PreparedStatement st,
+
+			Object value,
+
+			int index,
+
+			SharedSessionContractImplementor session
+
+	) throws HibernateException, SQLException {
+
 		st.setObject(index, value != null ? ((Enum) value).name() : null, Types.OTHER);
-	
+
 	}
 }

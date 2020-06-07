@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+import org.modelmapper.ModelMapper;
+
+import br.uece.eesdevops.cearamovies.web.entity.NewMovie;
+import lombok.*;
 /**
 - title,synopsis,producer,protagonist,year
  
@@ -15,10 +18,13 @@ import lombok.Data;
  */
 @Data
 @Entity
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "movie", schema = "public")
 public class Movie {
 
     @Id
+    @NonNull 
     @GeneratedValue
     private Long id;
 
@@ -34,7 +40,6 @@ public class Movie {
     @Column(nullable = false)
     private String producer;
     
-     
     @Column(nullable = false)
     private String thumbnail;
 
@@ -42,5 +47,11 @@ public class Movie {
     @Column(name = "year", nullable = false)
     private Integer year;
     
+    
+    
+    public NewMovie toDomain() {
+    	return new ModelMapper().map(this, NewMovie.class);
+    }
+
 
 }

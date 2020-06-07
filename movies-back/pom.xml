@@ -12,7 +12,7 @@
 	</parent>
 
 	<groupId>br.uece.eesdevops</groupId>
-	<artifactId>at</artifactId>
+	<artifactId>spring-boot-starter-parent</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 

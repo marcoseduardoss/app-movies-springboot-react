@@ -1,29 +1,29 @@
 import { useEffect, useState } from 'react';
-import listAllUsers from '../api/listAllUsers';
+import listAllMovies from '../api/listAllMovies';
 
 export default () => {
-  const [users, setUsers] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchUsers = () => {
+  const fetchMovies = () => {
     setIsLoading(true);
 
     const onSucces = (response) => {
       setIsLoading(false);
-      setUsers(response.data);
+      setMovies(response.data);
     }
 
     const onError = (error) => {
       console.error(error);
       setIsLoading(false);
-      setError({ message: 'Unable to load all users.' });
+      setError({ message: 'Unable to load all movies.' });
     }
 
-    listAllUsers(onSucces, onError);
+    listAllMovies(onSucces, onError);
   };
 
-  useEffect(() => fetchUsers(), []);
+  useEffect(() => fetchMovies(), []);
 
-  return [users, isLoading, error, fetchUsers];
+  return [movies, isLoading, error, fetchMovies];
 }

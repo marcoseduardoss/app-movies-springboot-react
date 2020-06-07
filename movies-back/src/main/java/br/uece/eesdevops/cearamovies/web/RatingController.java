@@ -1,5 +1,6 @@
 package br.uece.eesdevops.cearamovies.web;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
@@ -23,50 +24,63 @@ import br.uece.eesdevops.cearamovies.domain.service.ChangeMovieRatingService;
 import br.uece.eesdevops.cearamovies.domain.service.RatingBookService;
 import br.uece.eesdevops.cearamovies.repository.RatingRepository;
 import br.uece.eesdevops.cearamovies.web.entity.NewMovie;
+import br.uece.eesdevops.cearamovies.web.entity.NewRating;
 
 @RestController
 @RequestMapping("/rating")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RatingController {
 
-	private final ModelMapper mapper = new ModelMapper();
 	private final RatingRepository repository;
 	private final RatingBookService lendBookService;
 	private final ChangeMovieRatingService changeBookLendingStatusService;
 
 	public RatingController(RatingRepository repository, RatingBookService lendBookService,
 			ChangeMovieRatingService changeBookLendingStatusService) {
+		
 		this.repository = repository;
+		
 		this.lendBookService = lendBookService;
+		
 		this.changeBookLendingStatusService = changeBookLendingStatusService;
+		
 	}
 
 	@GetMapping(produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Rating>> getAll() {
-		List<Rating> lendings = repository.findAll();
-		return ResponseEntity.ok(lendings);
+	public ResponseEntity<List<NewRating>> getAll() {
+		
+		List<Rating> ratings = repository.findAll();
+		
+		return ResponseEntity.ok(ratings.stream().map(rating -> {return rating.toDomain();}).collect(toList()));
 	}
 
 	@GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<Rating> getById(@PathVariable Long id) {
-		Optional<Rating> lending = repository.findById(id);
-		if (!lending.isPresent()) {
+	public ResponseEntity<NewRating> getById(@PathVariable Long id) {
+		
+		Optional<Rating> rating = repository.findById(id);
+		
+		if (!rating.isPresent())
 			throw new BookLendingNotFoundException(id);
-		} else {
-			return ResponseEntity.ok(lending.get());
-		}
+	
+		return ResponseEntity.ok(rating.get().toDomain());
+		
 	}
 
 	@PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<Rating> save(@RequestBody NewMovie request) {
-		Rating saved = lendBookService.execute(mapper.map(request, Rating.class));
-		return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+	public ResponseEntity<NewRating> save(@RequestBody NewRating request) {
+		
+		Rating saved = lendBookService.execute(request.toDomain());
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(saved.toDomain());
+		
 	}
 
 	@PatchMapping(value = "/{id}/status", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<Rating> patchStatus(@PathVariable Long id, @RequestBody NewMovie request) {
-		Rating changed = changeBookLendingStatusService.execute(id, mapper.map(request, Rating.class));
-		return ResponseEntity.ok(changed);
+	public ResponseEntity<NewRating> patchStatus(@PathVariable Long id, @RequestBody NewRating request) {
+		
+		Rating changed = changeBookLendingStatusService.execute(id, request.toDomain());
+
+		return ResponseEntity.ok(changed.toDomain());
 	}
 
 }

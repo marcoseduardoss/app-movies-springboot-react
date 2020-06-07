@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
+import br.uece.eesdevops.cearamovies.web.entity.NewRating;
 import lombok.Data;
 /**
  * movie_id,score,author,comment bookId
@@ -34,5 +37,10 @@ public class Rating {
     
     @Column(nullable = false)
     private String comment;
+    
+    
+    public NewRating toDomain() {
+    	return new ModelMapper().map(this, NewRating.class);
+    }
 
 }
