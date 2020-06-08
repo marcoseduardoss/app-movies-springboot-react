@@ -15,6 +15,7 @@ public class NewMovie {
 	private String producer;
 	private String thumbnail;
 	private Integer year;
+	private Integer score = 0;
 	
 //	public NewMovie(Movie movie) {
 //        this.id = movie.getId();

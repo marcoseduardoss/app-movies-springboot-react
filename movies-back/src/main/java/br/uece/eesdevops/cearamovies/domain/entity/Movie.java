@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
 import org.modelmapper.ModelMapper;
 
 import br.uece.eesdevops.cearamovies.web.entity.NewMovie;
@@ -42,7 +43,9 @@ public class Movie {
     
     @Column(nullable = false)
     private String thumbnail;
-
+    
+    @Formula(value = "(select round(((select sum(r.score) from rating r where r.movie_id = id)::float/(select count(ra.id) from rating ra where ra.movie_id = id))::numeric))")
+    private Integer score = 0;
     
     @Column(name = "year", nullable = false)
     private Integer year;
