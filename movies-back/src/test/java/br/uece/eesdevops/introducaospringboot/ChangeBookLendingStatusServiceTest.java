@@ -3,7 +3,7 @@ package br.uece.eesdevops.introducaospringboot;
 import br.uece.eesdevops.cearamovies.domain.entity.BookLendingStatus;
 import br.uece.eesdevops.cearamovies.domain.entity.Rating;
 import br.uece.eesdevops.cearamovies.domain.exception.BookAlreadyLentException;
-import br.uece.eesdevops.cearamovies.domain.exception.BookLendingNotFoundException;
+import br.uece.eesdevops.cearamovies.domain.exception.MovieRatingNotFoundException;
 import br.uece.eesdevops.cearamovies.domain.service.ChangeMovieRatingService;
 import br.uece.eesdevops.cearamovies.repository.RatingRepository;
 
@@ -122,7 +122,7 @@ class ChangeBookLendingStatusServiceTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(
-                BookLendingNotFoundException.class,
+                MovieRatingNotFoundException.class,
                 () -> service.execute(bookLending.getId(), BookLendingStatus.LENT),
                 "Book lending for ID " + bookLending.getId() + " does not exist."
         );

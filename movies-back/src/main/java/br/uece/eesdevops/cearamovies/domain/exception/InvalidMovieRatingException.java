@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @SuppressWarnings("serial")
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class MovieNotFoundException extends RuntimeException {
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class InvalidMovieRatingException extends RuntimeException {
 
-    public MovieNotFoundException(Long id) {
-        super("Book for ID " + id + " does not exist.");
+    public InvalidMovieRatingException(String message) {
+        super(message);
     }
 
 }

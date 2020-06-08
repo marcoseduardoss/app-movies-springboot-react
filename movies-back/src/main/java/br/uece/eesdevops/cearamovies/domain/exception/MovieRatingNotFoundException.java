@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @SuppressWarnings("serial")
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class MovieNotFoundException extends RuntimeException {
+public class MovieRatingNotFoundException extends RuntimeException {
 
-    public MovieNotFoundException(Long id) {
-        super("Book for ID " + id + " does not exist.");
+    public MovieRatingNotFoundException(Long id) {
+        super("Book lending for ID " + id + " does not exist.");
     }
 
 }

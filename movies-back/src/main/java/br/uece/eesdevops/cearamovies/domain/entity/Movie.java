@@ -10,7 +10,10 @@ import org.hibernate.annotations.Formula;
 import org.modelmapper.ModelMapper;
 
 import br.uece.eesdevops.cearamovies.web.entity.NewMovie;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 /**
 - title,synopsis,producer,protagonist,year
  

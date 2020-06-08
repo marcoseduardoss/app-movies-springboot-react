@@ -4,10 +4,10 @@ import br.uece.eesdevops.cearamovies.domain.entity.Movie;
 import br.uece.eesdevops.cearamovies.domain.entity.Rating;
 import br.uece.eesdevops.cearamovies.domain.entity.Student;
 import br.uece.eesdevops.cearamovies.domain.exception.BookAlreadyLentException;
-import br.uece.eesdevops.cearamovies.domain.exception.InvalidBookLendingException;
+import br.uece.eesdevops.cearamovies.domain.exception.InvalidMovieRatingException;
 import br.uece.eesdevops.cearamovies.domain.exception.MovieNotFoundException;
 import br.uece.eesdevops.cearamovies.domain.exception.StudentNotFoundException;
-import br.uece.eesdevops.cearamovies.domain.service.RatingBookService;
+import br.uece.eesdevops.cearamovies.domain.service.MovieRatingService;
 import br.uece.eesdevops.cearamovies.repository.MovieRepository;
 import br.uece.eesdevops.cearamovies.repository.RatingRepository;
 import br.uece.eesdevops.cearamovies.repository.StudentRepository;
@@ -40,11 +40,11 @@ class LendBookServiceTest {
     private final RatingRepository bookLendingRepository =
             mock(RatingRepository.class);
 
-    private RatingBookService service;
+    private MovieRatingService service;
 
     @BeforeEach
     void beforeEach() {
-        service = new RatingBookService(
+        service = new MovieRatingService(
                 bookRepository,
                 studentRepository,
                 bookLendingRepository
@@ -77,7 +77,7 @@ class LendBookServiceTest {
     @DisplayName("should not lend a book when book or student is null")
     void should_not_lend_a_book_when_book_or_student_is_null() {
         assertThrows(
-                InvalidBookLendingException.class,
+                InvalidMovieRatingException.class,
                 () -> service.execute(fakeBookLending(null, fakeStudent())),
                 "Book ID is null."
         );
@@ -86,13 +86,13 @@ class LendBookServiceTest {
         bookWithNoId.setId(null);
 
         assertThrows(
-                InvalidBookLendingException.class,
+                InvalidMovieRatingException.class,
                 () -> service.execute(fakeBookLending(bookWithNoId, fakeStudent())),
                 "Book ID is null."
         );
 
         assertThrows(
-                InvalidBookLendingException.class,
+                InvalidMovieRatingException.class,
                 () -> service.execute(fakeBookLending(fakeBook(), null)),
                 "Student ID is null."
         );
@@ -101,7 +101,7 @@ class LendBookServiceTest {
         studentWithNoId.setId(null);
 
         assertThrows(
-                InvalidBookLendingException.class,
+                InvalidMovieRatingException.class,
                 () -> service.execute(fakeBookLending(fakeBook(), studentWithNoId)),
                 "Student ID is null."
         );
