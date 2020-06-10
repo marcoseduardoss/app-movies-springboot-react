@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.web.util.NestedServletException;
 
-import static br.uece.eesdevops.introducaospringboot.Fakes.fakeBookWithNoId;
+import static br.uece.eesdevops.introducaospringboot.Fakes.fakeMovieWithNoId;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -34,8 +34,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = IntroducaoSpringBootApplication.class)
-@DisplayName("Runs all tests for book registration")
-class BookTest {
+@DisplayName("Runs all tests for movie registration")
+class MovieTest {
 
     // region setup tests
 
@@ -67,162 +67,162 @@ class BookTest {
 
     // endregion
 
-    // region GET /books
+    // region GET /movies
 
     @Test
-    @DisplayName("should get all books with no results")
-    void should_get_all_books_with_no_results() throws Exception {
-        mockMvc.perform(get("/books"))
+    @DisplayName("should get all movies with no results")
+    void should_get_all_movies_with_no_results() throws Exception {
+        mockMvc.perform(get("/movies"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 
     @Test
-    @DisplayName("should get all books with one result")
-    void should_get_all_books_with_one_result() throws Exception {
-        Movie book = fakeBookWithNoId();
+    @DisplayName("should get all movies with one result")
+    void should_get_all_movies_with_one_result() throws Exception {
+        Movie movie = fakeMovieWithNoId();
 
-        book = repository.save(book);
+        movie = repository.save(movie);
 
-        mockMvc.perform(get("/books"))
+        mockMvc.perform(get("/movies"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(book.getId())))
-                .andExpect(jsonPath("$[0].isbn", is(book.getIsbn())))
-                .andExpect(jsonPath("$[0].title", is(book.getTitle())))
-                .andExpect(jsonPath("$[0].author", is(book.getAuthor())));
+                .andExpect(jsonPath("$[0].id", is(movie.getId())))
+                .andExpect(jsonPath("$[0].isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$[0].title", is(movie.getTitle())))
+                .andExpect(jsonPath("$[0].author", is(movie.getAuthor())));
     }
 
     @Test
-    @DisplayName("should get all books with three result")
-    void should_get_all_books_with_three_result() throws Exception {
-        List<Movie> books = new ArrayList<>();
+    @DisplayName("should get all movies with three result")
+    void should_get_all_movies_with_three_result() throws Exception {
+        List<Movie> movies = new ArrayList<>();
 
-        books.add(fakeBookWithNoId());
-        books.add(fakeBookWithNoId());
-        books.add(fakeBookWithNoId());
+        movies.add(fakeMovieWithNoId());
+        movies.add(fakeMovieWithNoId());
+        movies.add(fakeMovieWithNoId());
 
-        books = repository.saveAll(books);
+        movies = repository.saveAll(movies);
 
-        mockMvc.perform(get("/books"))
+        mockMvc.perform(get("/movies"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[0].id", is(books.get(0).getId())))
-                .andExpect(jsonPath("$[0].isbn", is(books.get(0).getIsbn())))
-                .andExpect(jsonPath("$[0].title", is(books.get(0).getTitle())))
-                .andExpect(jsonPath("$[0].author", is(books.get(0).getAuthor())))
-                .andExpect(jsonPath("$[1].id", is(books.get(1).getId())))
-                .andExpect(jsonPath("$[1].isbn", is(books.get(1).getIsbn())))
-                .andExpect(jsonPath("$[1].title", is(books.get(1).getTitle())))
-                .andExpect(jsonPath("$[1].author", is(books.get(1).getAuthor())))
-                .andExpect(jsonPath("$[2].id", is(books.get(2).getId())))
-                .andExpect(jsonPath("$[2].isbn", is(books.get(2).getIsbn())))
-                .andExpect(jsonPath("$[2].title", is(books.get(2).getTitle())))
-                .andExpect(jsonPath("$[2].author", is(books.get(2).getAuthor())));
+                .andExpect(jsonPath("$[0].id", is(movies.get(0).getId())))
+                .andExpect(jsonPath("$[0].isbn", is(movies.get(0).getIsbn())))
+                .andExpect(jsonPath("$[0].title", is(movies.get(0).getTitle())))
+                .andExpect(jsonPath("$[0].author", is(movies.get(0).getAuthor())))
+                .andExpect(jsonPath("$[1].id", is(movies.get(1).getId())))
+                .andExpect(jsonPath("$[1].isbn", is(movies.get(1).getIsbn())))
+                .andExpect(jsonPath("$[1].title", is(movies.get(1).getTitle())))
+                .andExpect(jsonPath("$[1].author", is(movies.get(1).getAuthor())))
+                .andExpect(jsonPath("$[2].id", is(movies.get(2).getId())))
+                .andExpect(jsonPath("$[2].isbn", is(movies.get(2).getIsbn())))
+                .andExpect(jsonPath("$[2].title", is(movies.get(2).getTitle())))
+                .andExpect(jsonPath("$[2].author", is(movies.get(2).getAuthor())));
     }
 
     // endregion
 
-    // region GET /books/{id}
+    // region GET /movies/{id}
 
     @Test
-    @DisplayName("should get book for ID successfully")
-    void should_get_a_book_for_id_successfully() throws Exception {
-        Movie book = fakeBookWithNoId();
+    @DisplayName("should get movie for ID successfully")
+    void should_get_a_movie_for_id_successfully() throws Exception {
+        Movie movie = fakeMovieWithNoId();
 
-        book = repository.save(book);
+        movie = repository.save(movie);
 
-        mockMvc.perform(get("/books/" + book.getId()))
+        mockMvc.perform(get("/movies/" + movie.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(book.getId())))
-                .andExpect(jsonPath("$.isbn", is(book.getIsbn())))
-                .andExpect(jsonPath("$.title", is(book.getTitle())))
-                .andExpect(jsonPath("$.author", is(book.getAuthor())));
+                .andExpect(jsonPath("$.id", is(movie.getId())))
+                .andExpect(jsonPath("$.isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$.title", is(movie.getTitle())))
+                .andExpect(jsonPath("$.author", is(movie.getAuthor())));
     }
 
     @Test
-    @DisplayName("should not get book for ID when it does not exist")
-    void should_not_get_a_book_for_id_when_it_does_not_exist() throws Exception {
-        Movie book = fakeBookWithNoId();
+    @DisplayName("should not get movie for ID when it does not exist")
+    void should_not_get_a_movie_for_id_when_it_does_not_exist() throws Exception {
+        Movie movie = fakeMovieWithNoId();
 
-        repository.save(book);
+        repository.save(movie);
 
-        int bookId = 9999;
+        int movieId = 9999;
 
-        mockMvc.perform(get("/books/" + bookId))
+        mockMvc.perform(get("/movies/" + movieId))
                 .andExpect(status().isNotFound());
     }
 
     // endregion
 
-    // region POST /books
+    // region POST /movies
 
     @Test
-    @DisplayName("should save a new book successfully")
-    void should_save_new_book_successfully() throws Exception {
-        Movie book = mapper.readValue(Payloads.newBookRequest(), Movie.class);
+    @DisplayName("should save a new movie successfully")
+    void should_save_new_movie_successfully() throws Exception {
+        Movie movie = mapper.readValue(Payloads.newMovieRequest(), Movie.class);
 
-        MockHttpServletRequestBuilder request = post("/books")
-                .content(Payloads.newBookRequest())
+        MockHttpServletRequestBuilder request = post("/movies")
+                .content(Payloads.newMovieRequest())
                 .contentType(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(request)
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", is(notNullValue())))
-                .andExpect(jsonPath("$.isbn", is(book.getIsbn())))
-                .andExpect(jsonPath("$.title", is(book.getTitle())))
-                .andExpect(jsonPath("$.author", is(book.getAuthor())))
-                .andExpect(jsonPath("$.publicationYear", is(book.getPublicationYear())));
+                .andExpect(jsonPath("$.isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$.title", is(movie.getTitle())))
+                .andExpect(jsonPath("$.author", is(movie.getAuthor())))
+                .andExpect(jsonPath("$.publicationYear", is(movie.getPublicationYear())));
     }
 
     @Test
-    @DisplayName("should not save a new book when an error occurs")
-    void should_not_save_new_book_when_an_error_occurs() throws Exception {
-        Movie book = mapper.readValue(Payloads.newBookRequest(), Movie.class);
+    @DisplayName("should not save a new movie when an error occurs")
+    void should_not_save_new_movie_when_an_error_occurs() throws Exception {
+        Movie movie = mapper.readValue(Payloads.newMovieRequest(), Movie.class);
 
-        repository.save(book);
+        repository.save(movie);
 
-        MockHttpServletRequestBuilder request = post("/books")
-                .content(Payloads.newBookRequest())
+        MockHttpServletRequestBuilder request = post("/movies")
+                .content(Payloads.newMovieRequest())
                 .contentType(MediaType.APPLICATION_JSON);
 
         assertThrows(
                 NestedServletException.class,
                 () -> mockMvc.perform(request),
-                "ERROR: duplicate key value violates unique constraint \"book_isbn_key\"\n" +
+                "ERROR: duplicate key value violates unique constraint \"movie_isbn_key\"\n" +
                         "  Detalhe: Key (isbn)=(0321125215) already exists."
         );
     }
 
     //endregion
 
-    // region PUT /books/{id}
+    // region PUT /movies/{id}
 
     @Test
-    @DisplayName("should update a book successfully")
-    void should_update_a_book_successfully() throws Exception {
-        Movie book = mapper.readValue(Payloads.updateBookRequest(), Movie.class);
+    @DisplayName("should update a movie successfully")
+    void should_update_a_movie_successfully() throws Exception {
+        Movie movie = mapper.readValue(Payloads.updateMovieRequest(), Movie.class);
 
-        book = repository.save(book);
+        movie = repository.save(movie);
 
-        MockHttpServletRequestBuilder request = put("/books/" + book.getId())
-                .content(Payloads.updateBookRequest())
+        MockHttpServletRequestBuilder request = put("/movies/" + movie.getId())
+                .content(Payloads.updateMovieRequest())
                 .contentType(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(book.getId())))
-                .andExpect(jsonPath("$.isbn", is(book.getIsbn())))
-                .andExpect(jsonPath("$.title", is(book.getTitle())))
-                .andExpect(jsonPath("$.author", is(book.getAuthor())))
-                .andExpect(jsonPath("$.publicationYear", is(book.getPublicationYear())));
+                .andExpect(jsonPath("$.id", is(movie.getId())))
+                .andExpect(jsonPath("$.isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$.title", is(movie.getTitle())))
+                .andExpect(jsonPath("$.author", is(movie.getAuthor())))
+                .andExpect(jsonPath("$.publicationYear", is(movie.getPublicationYear())));
     }
 
     @Test
-    @DisplayName("should not update a book when it does not exist")
-    void should_not_update_a_book_when_it_does_not_exist() throws Exception {
-        MockHttpServletRequestBuilder request = put("/books/" + 9999)
-                .content(Payloads.newBookRequest())
+    @DisplayName("should not update a movie when it does not exist")
+    void should_not_update_a_movie_when_it_does_not_exist() throws Exception {
+        MockHttpServletRequestBuilder request = put("/movies/" + 9999)
+                .content(Payloads.newMovieRequest())
                 .contentType(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(request)

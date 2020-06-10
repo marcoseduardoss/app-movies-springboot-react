@@ -25,8 +25,7 @@ import static org.mockito.Mockito.when;
 @DisplayName("Runs all tests for domain service class responsible for changing book lending status")
 class ChangeBookLendingStatusServiceTest {
 
-    private final RatingRepository repository =
-            mock(RatingRepository.class);
+    private final RatingRepository repository = mock(RatingRepository.class);
 
     private ChangeMovieRatingService service;
 
