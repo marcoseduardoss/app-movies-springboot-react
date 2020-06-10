@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import listAllMovies from '../api/listAllMovies';
+//import listAllMovies from '../api/listAllMovies';
+import Api from "../api/api";
 
 export default () => {
   const [movies, setMovies] = useState([]);
@@ -17,10 +18,12 @@ export default () => {
     const onError = (error) => {
       console.error(error);
       setIsLoading(false);
-      setError({ message: 'Unable to load all movies.' });
+      setError('Unable to load all movies.');
     }
 
-    listAllMovies(onSucces, onError);
+    Api.listAllUsers(onSucces, onError);
+    //listAllMovies(onSucces, onError);
+    
   };
 
   useEffect(() => fetchMovies(), []);

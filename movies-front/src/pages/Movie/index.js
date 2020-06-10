@@ -1,6 +1,7 @@
 import React from "react";
 import './movie.css'
 import useGetMovie from './../../hooks/useGetMovie';
+import RatingForm from './../RatingForm';
 
 const LoadingMessage = () => {
 
@@ -39,7 +40,8 @@ function Movie(props) {
                 <img src={movie.thumbnail} title="Capa"/> 
                 <h3> Sinopse</h3>
                 <div >{movie.synopsis} </div> 
-                <div><a href="/">Voltar</a> </div>     
+                <div><a href="/">Voltar</a> </div> 
+                <div><RatingForm /></div>    
             
       </div>
     </div>

@@ -4,21 +4,12 @@ import './home.css'
 import useListMovies from './../../hooks/useListMovies';
 
 const LoadingMessage = () => {
-
-  return (
-    <p>
-      Loading data, please wait...
-    </p>
-  );
+  return (<div height="800px">Processando dados, por favor aguarde...</div>);
 }
 
 const Error = (props) => {
   const { message } = props;
-  return (
-    <h3>
-      {message}
-    </h3>
-  );
+  return (<b>{message}</b>);
 }
 
 const MovieItem = (props) => {
@@ -63,8 +54,7 @@ function Movies() {
   return <div className="home">
     
     
-    {
-        
+    {        
         error ? <Error message={error} /> : 
         (isLoading ? <LoadingMessage /> : <ListMoviesTable movies={movies} /> )
     }
