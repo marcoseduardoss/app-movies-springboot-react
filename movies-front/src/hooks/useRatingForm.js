@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Api from "./../api/api";
 
-const useRatingForm = (callback) => {
+export default (callback) => {
+    
   const [values, setValues] = useState({ });
   const [loading, setLoading] = useState(false);
 
@@ -13,11 +15,12 @@ const useRatingForm = (callback) => {
   const handleSubmit = callback => event => {
     event.preventDefault();
     setLoading(true);
-    callback();
+    let rating = callback();
+    Api.saveRating(rating);
     setLoading(false);
   };
 
   return [{ values, loading }, handleChange, handleSubmit];
 };
 
-export default useRatingForm;
+//export default useRatingForm;

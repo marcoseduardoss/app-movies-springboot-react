@@ -1,6 +1,5 @@
 import React from "react";
 import useRatingForm from "./../../hooks/useRatingForm";
-import Api from "./../../api/api";
 import "./rating.css";
 
 
@@ -8,13 +7,14 @@ export default () => {
   
   const [ {values, loading}, handleChange, handleSubmit] = useRatingForm();
   
-
   const enviarContato = () => {
-    var list = Api.saveRating(
-      {"idMovie":2,"score":5,"author":"Maria Clara","comment":"kkkkkkkkkkkkkkkkkkkkkkkkk."} 
-    )
-    // faça o que for preciso :)
-    console.log(list);
+    let rating = {
+      "idMovie":2,
+      "score":values.score,
+      "author":values.author,
+      "comment":values.comment
+    };
+    return rating;
   };
 
   return (
@@ -30,8 +30,8 @@ export default () => {
         <input
           onChange={handleChange}
           type="text"
-          name="email"
-          placeholder="Digite o seu e-mail"
+          name="score"
+          placeholder="Digite o score"
         />
         <input
           onChange={handleChange}
