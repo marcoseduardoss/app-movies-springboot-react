@@ -1,11 +1,17 @@
 import React from 'react';
+import LoginForm from './../../pages/LoginForm'
 import './style.css';
 
 function Header() {
   return (
     <div className="footer-bottom">
       <div className="header">
-          <a href="#"> Ceará Movies </a>    
+          <div className="header-esq">
+            <a href="#"> Ceará Movies </a> 
+          </div>
+          <div className="header-dir">          
+            <LoginForm />
+          </div>
       </div>
     </div>
   );

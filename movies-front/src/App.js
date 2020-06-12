@@ -8,8 +8,7 @@ import {isAuthenticated} from './Auth'
 
 
 const publicRoutes = {
-  '/': () => <Admin  />,
-  '/movie/:id': ({id}) => <Movie id={id} />
+  '/': () => <Admin  />
 };
 
 const privateRoutes = {

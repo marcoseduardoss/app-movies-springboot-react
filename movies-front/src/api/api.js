@@ -7,7 +7,7 @@ const api = axios.create({
 
 // if we don't write the next line, our resources will receive the entire response in the data field. We don't want that.
 //api.interceptors.response.use(response => response.data)
-
+const loadRating   = (onSuccess, onError) => api.post('/users/authenticate').then(onSuccess).catch(onError);
 const loadMovie    = (onSuccess, onError) => api.get('/movies').then(onSuccess).catch(onError);
 const listAllUsers = (onSuccess, onError) => api.get('/movies').then(onSuccess).catch(onError);
 
@@ -15,7 +15,7 @@ const saveMovie = data => api.put('/movies', data)
 
 const removeMovie = id => api.delete('/movies', { id })
 
-const loadRating = () => api.get('/rating')
+
 
 //const saveRating = data => api.post('/rating', data)
 const saveRating = (data, onSuccess, onError)  => api.post('/rating', data).then(onSuccess).catch(onError);

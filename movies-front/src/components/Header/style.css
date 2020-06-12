@@ -12,3 +12,14 @@
   font-size: 36px;
   color: white;
 }
+
+.header-esq{  
+  float: left;
+  width:50%;  
+  
+}
+
+.header-dir{
+margin-left: 338px;
+  
+}
