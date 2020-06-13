@@ -9,17 +9,18 @@
 
 .header a {
   text-decoration: none;
-  font-size: 36px;
   color: white;
 }
 
 .header-esq{  
   float: left;
   width:50%;  
-  
+  font-size: 36px;  
 }
 
 .header-dir{
+  cursor: pointer;
 margin-left: 338px;
-  
+font-size: 18px;
+padding: 0px;
 }

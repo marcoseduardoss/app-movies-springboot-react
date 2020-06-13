@@ -1,16 +1,31 @@
 import React from 'react';
 import LoginForm from './../../pages/LoginForm'
+import {isAuthenticated} from './../../Auth'
 import './style.css';
 
+import createBrowserHistory from 'history/createBrowserHistory';
+const history = createBrowserHistory({forceRefresh:true});
+
+
+
 function Header() {
+  
+const  logout = () => {
+    localStorage.setItem('user', '');
+    history.push("/"); 
+    //alert('Volte sempre!!!')
+}
+
   return (
     <div className="footer-bottom">
       <div className="header">
           <div className="header-esq">
-            <a href="#"> Ceará Movies </a> 
+            <a href="/"> Ceará Movies </a> 
           </div>
-          <div className="header-dir">          
-            <LoginForm />
+          <div className="header-dir" >          
+            {
+            ( !isAuthenticated() ? <LoginForm /> : <a onClick={logout}> Sair </a>)
+            }
           </div>
       </div>
     </div>

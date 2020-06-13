@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Api from "./../api/api";
+import { Link, useHistory } from "react-router-dom";
+
+import createBrowserHistory from 'history/createBrowserHistory';
+const history = createBrowserHistory({forceRefresh:true});
 
 export default (callback) => {
-    
+
+  //const history = useHistory();    
   const [values, setValues] = useState({ });
   const [loading, setLoading] = useState(false);
 
@@ -13,15 +18,23 @@ export default (callback) => {
   };
 
   const handleSubmit = callback => event => {
-    event.preventDefault();
-    setLoading(true);
-    let login = callback();
-    localStorage.setItem('user', login.username);
+    try {
+      event.preventDefault();
+      setLoading(true);
+      let login = callback();
 
-    
-    //console.log(login);
-    //Api.login(login);
-    setLoading(false);
+      if(login.username == 'admin' && login.password == '123'){
+        localStorage.setItem('user', login.username);
+        setLoading(false);  
+      }else{
+        localStorage.setItem('user', '');
+        alert('Usuário inválido');
+      }
+      history.push("/");    
+      
+    } catch (e) {
+      alert(e.message);
+    }
   };
 
   return [{ values, loading }, handleChange, handleSubmit];

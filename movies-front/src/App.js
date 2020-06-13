@@ -4,21 +4,22 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Movie from './pages/Movie';
 import Admin from './pages/Admin';
+import About from './pages/About';
 import {isAuthenticated} from './Auth'
 
 
-const publicRoutes = {
+const  privateRoutes = {
+  '/about': () => <About  />,
   '/': () => <Admin  />
 };
 
-const privateRoutes = {
+const publicRoutes = {
   '/': () => <Home  />,
+  '/about': () => <About  />,
   '/movie/:id': ({id}) => <Movie id={id} />
 };
 
 const App = () => {
-  //localStorage.setItem('user', 'marcos.eduardo');
-  //console.log(isAuthenticated());
   const routeResult = useRoutes( isAuthenticated() ? privateRoutes : publicRoutes );  
   return routeResult || <NotFound />;
 }
