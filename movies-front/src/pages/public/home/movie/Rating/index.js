@@ -1,7 +1,6 @@
 import React from "react";
-import useRatingForm from "./../../hooks/useRatingForm";
+import useRatingForm from "../../../../../hooks/useRatingForm";
 import "./rating.css";
-import { Link } from 'react-router-dom';
 
 export default () => {
   

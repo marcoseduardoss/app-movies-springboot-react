@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from './../../pages/LoginForm'
+import LoginForm from '../../components/LoginForm'
 import {isAuthenticated} from './../../Auth'
 import './style.css';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import './movie.css'
-import useGetMovie from './../../hooks/useGetMovie';
-import RatingForm from './../RatingForm';
+import useGetMovie from './../../../../../hooks/useGetMovie';
+import RatingForm from '../Rating';
 
 const LoadingMessage = () => {
 
@@ -23,11 +23,11 @@ const Error = (props) => {
 
 
 
-function Movie(props) {
+function MovieDetails(props) {
 
   const { id } = props;
 
-  const [movie, isLoading, error, fetchMovie] = useGetMovie(id);
+  const [movie, isLoading, error] = useGetMovie(id);//, fetchMovie
 
   const DetailMovie = (props) => {
  
@@ -37,7 +37,7 @@ function Movie(props) {
       <div className="movie-detail"> 
 
                 <h1>{movie.id} - {movie.title}</h1>        
-                <img src={movie.thumbnail} title="Capa"/> 
+                <img src={movie.thumbnail} alt="Capa" /> 
                 <h3> Sinopse</h3>
                 <div >{movie.synopsis} </div> 
                 <div><a href="/">Voltar</a> </div> 
@@ -61,4 +61,4 @@ function Movie(props) {
 
 }
 
-export default Movie;
+export default MovieDetails;

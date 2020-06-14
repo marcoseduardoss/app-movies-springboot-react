@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Api from "./../api/api";
-import { Link, useHistory } from "react-router-dom";
 
 import createBrowserHistory from 'history/createBrowserHistory';
 const history = createBrowserHistory({forceRefresh:true});
+//history.push("/"); 
 
 export default (callback) => {
 

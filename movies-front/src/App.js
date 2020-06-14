@@ -1,22 +1,24 @@
 import React from 'react';
 import {useRoutes} from 'hookrouter';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
-import Movie from './pages/Movie';
-import Admin from './pages/Admin';
-import About from './pages/About';
+import MoviesListPublicAccess from './pages/public/home/movie/List';
+import MoviesListPrivateAccess from './pages/private/home/movie/List';
+import MovieEdit from './pages/private/home/movie/Edit';
+import MovieDetails from './pages/public/home/movie/Detail';
+import NotFound from './components/NotFound';
+import About from './pages/public/About';
 import {isAuthenticated} from './Auth'
 
 
 const  privateRoutes = {
   '/about': () => <About  />,
-  '/': () => <Admin  />
+  '/movie/edit': () => <MovieEdit  />,
+  '/': () => <MoviesListPrivateAccess  />
 };
 
 const publicRoutes = {
-  '/': () => <Home  />,
+  '/': () => <MoviesListPublicAccess  />,
   '/about': () => <About  />,
-  '/movie/:id': ({id}) => <Movie id={id} />
+  '/movie/:id': ({id}) => <MovieDetails id={id} />
 };
 
 const App = () => {

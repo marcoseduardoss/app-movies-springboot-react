@@ -1,7 +1,6 @@
 import React from "react";
-import useLoginForm from "./../../hooks/useLoginForm";
+import useLoginForm from "../../hooks/useLoginForm";
 import "./login.css";
-import { Link } from 'react-router-dom'
 
 export default () => {
   

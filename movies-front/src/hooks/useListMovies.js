@@ -21,7 +21,7 @@ export default () => {
       setError('Unable to load all movies.');
     }
 
-    Api.listAllUsers(onSucces, onError);
+    Api.listAllMovies(onSucces, onError);
     //listAllMovies(onSucces, onError);
     
   };

@@ -1,7 +1,7 @@
 
 import React from "react";
-import './home.css'
-import useListMovies from './../../hooks/useListMovies';
+import './list.css'
+import useListMovies from './../../../../../hooks/useListMovies';
 
 const LoadingMessage = () => {
   return (<div height="800px">Processando dados, por favor aguarde...</div>);
@@ -46,7 +46,7 @@ const ListMoviesTable = (props) => {
   );
 }
 
-function Movies() {
+function MoviesListPublicAccess() {
 
   const [movies, isLoading, error, fetchMovies] = useListMovies();
 
@@ -63,4 +63,4 @@ function Movies() {
 
 }
 
-export default Movies;
+export default MoviesListPublicAccess;
