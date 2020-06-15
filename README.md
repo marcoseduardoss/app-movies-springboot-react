@@ -7,9 +7,9 @@ Professor: Wellington Costa
 Aluno: Marcos Eduardo da Silva Santos
 
 Requistos:
-US01 - Como um usuário, eu quero poder ver quais filmes foram gravados no Ceara Para que eu possa saber quais filmes firam gravados no Ceará ou possuem um ator ou diretor cearense.
-US02 - Como um usuário Eu quero avaliar os cinemas para que eu possa saber quais filmes foram melhor avaliados
-US03 - Como um Administrador do sistema, eu quero listar, editar, remover e incluir novos filmes para que eu possa administrar os filmes cearense disponíveis.
+- US01 - Como um usuário, eu quero poder ver quais filmes foram gravados no Ceara Para que eu possa saber quais filmes firam gravados no Ceará ou possuem um ator ou diretor cearense.
+- US02 - Como um usuário Eu quero avaliar os cinemas para que eu possa saber quais filmes foram melhor avaliados
+- US03 - Como um Administrador do sistema, eu quero listar, editar, remover e incluir novos filmes para que eu possa administrar os filmes cearense disponíveis.
 
 ## Technologies:
 
