@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.google.gson.Gson;
+
 import br.uece.eesdevops.cearamovies.domain.entity.Movie;
 import br.uece.eesdevops.cearamovies.domain.entity.Rating;
 
@@ -13,13 +15,22 @@ final class Fakes {
 
     static Movie fakeMovie() {
         Movie movie = new Movie();
-        movie.setId(1L);
+        movie.setId(1L);        
+        movie.setScore(new Random().nextInt(5));
         movie.setTitle("Fake Movie");
         movie.setProtagonists("Fake Protagonist");
+        movie.setProducer("Fake producer");
+        movie.setSynopsis("Fake synopsis");        
         movie.setYear(1999);
         return movie;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Gson().toJson(fakeMovie()));	
+	}
+    
 
+    
     public static Movie fakeMovieWithNoId() {
         Movie movie = fakeMovie();
         movie.setId(null);

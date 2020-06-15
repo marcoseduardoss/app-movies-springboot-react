@@ -11,7 +11,8 @@ import {isAuthenticated} from './Auth'
 
 const  privateRoutes = {
   '/about': () => <About  />,
-  '/movie/edit': () => <MovieEdit  />,
+  '/movie/edit/:id': ({id}) => <MovieEdit id={id} />,
+  '/movie/add': () => <MovieEdit id={null}/>,
   '/': () => <MoviesListPrivateAccess  />
 };
 

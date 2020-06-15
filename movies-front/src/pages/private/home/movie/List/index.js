@@ -16,15 +16,13 @@ const Error = (props) => {
   return (<b>{message}</b>);
 }
 
-const handleAddItem = (e) => {
-  history.push({
-    pathname: '/movie/edit',
-    state: { detail: 'some_value' }
-});  
+const handleEditItem = (e) => {
+  const id = e.target.getAttribute("id");
+  history.push("/movie/edit/"+id);  
 }
 
-const handleEditItem = (e) => {
-  history.push("/movie/edit");  
+const handleAddItem  = (e) => {
+  history.push("/movie/add");  
 }
 
 const handleRemoveItem = (e) => {
@@ -56,7 +54,7 @@ const MovieItem = (props) => {
         <td  > {movie.title}</td>
 
         <td><button id={movie.id} onClick={handleRemoveItem} >Remover</button></td>
-        <td><button id={'id_edit_'+movie.id} onClick={handleEditItem} >Alterar</button></td>
+        <td><button id={movie.id} onClick={handleEditItem} >Alterar</button></td>
         
     </tr>
   );
@@ -86,7 +84,7 @@ const ListMoviesTable = (props) => {
 function MoviesListPrivateAccess() {
 
   const [movies, isLoading, error, fetchMovies] = useListMovies();
-
+        
 
   return <div className="home">
     

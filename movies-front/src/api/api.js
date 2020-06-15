@@ -11,20 +11,16 @@ const api = axios.create({
 //Api user
 const authenticate   = (onSuccess, onError) => api.post('/users/authenticate').then(onSuccess).catch(onError);
 
-const saveMovie = data => api.post('/movies', data)//CREATE
-//READ
-const loadMovie    = (onSuccess, onError) => api.get('/movies').then(onSuccess).catch(onError);
+const getMovie      = (id) => api.get('/movies/'+id);
 const listAllMovies = (onSuccess, onError) => api.get('/movies').then(onSuccess).catch(onError);
-//UPDATE
-const updateMovie = data => api.put('/movies', data)
-//DELETE
-const removeMovie = (id,onSuccess, onError) => api.delete('/movies/'+id).then(onSuccess).catch(onError);
-//Api rating
-const saveRating = (data, onSuccess, onError)  => api.post('/rating', data).then(onSuccess).catch(onError);
+const updateMovie   = (id, data) => api.put('/movies/'+id, data)
+const saveMovie     = data => api.post('/movies', data)//CREATE
+const removeMovie   = (id,onSuccess, onError) => api.delete('/movies/'+id).then(onSuccess).catch(onError);
+const saveRating    = (data, onSuccess, onError)  => api.post('/rating', data).then(onSuccess).catch(onError);
 
 export default {
     listAllMovies,
-    loadMovie,
+    getMovie,
     saveMovie,
     authenticate,
     saveRating,

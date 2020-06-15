@@ -80,7 +80,8 @@ class MovieTest {
     @Test
     @DisplayName("should get all movies with one result")
     void should_get_all_movies_with_one_result() throws Exception {
-        Movie movie = fakeMovieWithNoId();
+        
+    	Movie movie = fakeMovieWithNoId();
 
         movie = repository.save(movie);
 
@@ -88,9 +89,12 @@ class MovieTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(movie.getId())))
-                .andExpect(jsonPath("$[0].isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$[0].score", is(movie.getScore())))
                 .andExpect(jsonPath("$[0].title", is(movie.getTitle())))
-                .andExpect(jsonPath("$[0].author", is(movie.getAuthor())));
+                .andExpect(jsonPath("$[0].protagonists", is(movie.getProtagonists())))
+                .andExpect(jsonPath("$[0].producer", is(movie.getProducer())))
+                .andExpect(jsonPath("$[0].synopsis", is(movie.getSynopsis())))
+                .andExpect(jsonPath("$[0].year", is(movie.getYear())));
     }
 
     @Test
@@ -107,18 +111,30 @@ class MovieTest {
         mockMvc.perform(get("/movies"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[0].id", is(movies.get(0).getId())))
-                .andExpect(jsonPath("$[0].isbn", is(movies.get(0).getIsbn())))
-                .andExpect(jsonPath("$[0].title", is(movies.get(0).getTitle())))
-                .andExpect(jsonPath("$[0].author", is(movies.get(0).getAuthor())))
+                
+                .andExpect(jsonPath("$[0].id", is(movies.get(2).getId())))
+                .andExpect(jsonPath("$[0].score", is(movies.get(2).getScore())))
+                .andExpect(jsonPath("$[0].title", is(movies.get(2).getTitle())))
+                .andExpect(jsonPath("$[0].protagonists", is(movies.get(2).getProtagonists())))
+                .andExpect(jsonPath("$[0].producer", is(movies.get(2).getProducer())))
+                .andExpect(jsonPath("$[0].synopsis", is(movies.get(2).getSynopsis())))
+                .andExpect(jsonPath("$[0].year", is(movies.get(2).getYear())))
+                
                 .andExpect(jsonPath("$[1].id", is(movies.get(1).getId())))
-                .andExpect(jsonPath("$[1].isbn", is(movies.get(1).getIsbn())))
+                .andExpect(jsonPath("$[1].score", is(movies.get(1).getScore())))
                 .andExpect(jsonPath("$[1].title", is(movies.get(1).getTitle())))
-                .andExpect(jsonPath("$[1].author", is(movies.get(1).getAuthor())))
+                .andExpect(jsonPath("$[1].protagonists", is(movies.get(1).getProtagonists())))
+                .andExpect(jsonPath("$[1].producer", is(movies.get(1).getProducer())))
+                .andExpect(jsonPath("$[1].synopsis", is(movies.get(1).getSynopsis())))
+                .andExpect(jsonPath("$[1].year", is(movies.get(1).getYear())))
+                
                 .andExpect(jsonPath("$[2].id", is(movies.get(2).getId())))
-                .andExpect(jsonPath("$[2].isbn", is(movies.get(2).getIsbn())))
+                .andExpect(jsonPath("$[2].score", is(movies.get(2).getScore())))
                 .andExpect(jsonPath("$[2].title", is(movies.get(2).getTitle())))
-                .andExpect(jsonPath("$[2].author", is(movies.get(2).getAuthor())));
+                .andExpect(jsonPath("$[2].protagonists", is(movies.get(2).getProtagonists())))
+                .andExpect(jsonPath("$[2].producer", is(movies.get(2).getProducer())))
+                .andExpect(jsonPath("$[2].synopsis", is(movies.get(2).getSynopsis())))
+                .andExpect(jsonPath("$[2].year", is(movies.get(2).getYear())));
     }
 
     // endregion
@@ -135,15 +151,20 @@ class MovieTest {
         mockMvc.perform(get("/movies/" + movie.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(movie.getId())))
-                .andExpect(jsonPath("$.isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$.score", is(movie.getScore())))
                 .andExpect(jsonPath("$.title", is(movie.getTitle())))
-                .andExpect(jsonPath("$.author", is(movie.getAuthor())));
+                .andExpect(jsonPath("$.protagonists", is(movie.getProtagonists())))
+                .andExpect(jsonPath("$.producer", is(movie.getProducer())))
+                .andExpect(jsonPath("$.synopsis", is(movie.getSynopsis())))
+                .andExpect(jsonPath("$.year", is(movie.getYear()))); 
+    
     }
 
     @Test
     @DisplayName("should not get movie for ID when it does not exist")
     void should_not_get_a_movie_for_id_when_it_does_not_exist() throws Exception {
-        Movie movie = fakeMovieWithNoId();
+        
+    	Movie movie = fakeMovieWithNoId();
 
         repository.save(movie);
 
@@ -168,11 +189,13 @@ class MovieTest {
 
         mockMvc.perform(request)
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id", is(notNullValue())))
-                .andExpect(jsonPath("$.isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$.id", is(notNullValue())))                
+                .andExpect(jsonPath("$.score", is(movie.getScore())))
                 .andExpect(jsonPath("$.title", is(movie.getTitle())))
-                .andExpect(jsonPath("$.author", is(movie.getAuthor())))
-                .andExpect(jsonPath("$.publicationYear", is(movie.getPublicationYear())));
+                .andExpect(jsonPath("$.protagonists", is(movie.getProtagonists())))
+                .andExpect(jsonPath("$.producer", is(movie.getProducer())))
+                .andExpect(jsonPath("$.synopsis", is(movie.getSynopsis())))
+                .andExpect(jsonPath("$.year", is(movie.getYear()))); 
     }
 
     @Test
@@ -212,10 +235,12 @@ class MovieTest {
         mockMvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(movie.getId())))
-                .andExpect(jsonPath("$.isbn", is(movie.getIsbn())))
+                .andExpect(jsonPath("$.score", is(movie.getScore())))
                 .andExpect(jsonPath("$.title", is(movie.getTitle())))
-                .andExpect(jsonPath("$.author", is(movie.getAuthor())))
-                .andExpect(jsonPath("$.publicationYear", is(movie.getPublicationYear())));
+                .andExpect(jsonPath("$.protagonists", is(movie.getProtagonists())))
+                .andExpect(jsonPath("$.producer", is(movie.getProducer())))
+                .andExpect(jsonPath("$.synopsis", is(movie.getSynopsis())))
+                .andExpect(jsonPath("$.year", is(movie.getYear()))); 
     }
 
     @Test

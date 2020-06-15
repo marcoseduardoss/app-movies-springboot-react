@@ -1,32 +1,26 @@
 package br.uece.eesdevops.introducaospringboot;
 
-import br.uece.eesdevops.cearamovies.domain.entity.Movie;
-import br.uece.eesdevops.cearamovies.domain.entity.Rating;
-//import br.uece.eesdevops.cearamovies.domain.exception.MovieAlreadyLentException;
-import br.uece.eesdevops.cearamovies.domain.exception.InvalidMovieRatingException;
-import br.uece.eesdevops.cearamovies.domain.exception.MovieNotFoundException;
-import br.uece.eesdevops.cearamovies.domain.service.MovieRatingService;
-import br.uece.eesdevops.cearamovies.repository.MovieRepository;
-import br.uece.eesdevops.cearamovies.repository.RatingRepository;
+import static br.uece.eesdevops.introducaospringboot.Fakes.fakeMovie;
+import static br.uece.eesdevops.introducaospringboot.Fakes.fakeMovieRating;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static br.uece.eesdevops.introducaospringboot.Fakes.fakeMovie;
-import static br.uece.eesdevops.introducaospringboot.Fakes.fakeMovieRating;
-import static br.uece.eesdevops.introducaospringboot.Fakes.fakeMovieRatingList;
-import static br.uece.eesdevops.introducaospringboot.Fakes.fakeStudent;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
+import br.uece.eesdevops.cearamovies.domain.entity.Movie;
+import br.uece.eesdevops.cearamovies.domain.entity.Rating;
+import br.uece.eesdevops.cearamovies.domain.service.MovieRatingService;
+import br.uece.eesdevops.cearamovies.repository.MovieRepository;
+import br.uece.eesdevops.cearamovies.repository.RatingRepository;
 
 @DisplayName("Runs all tests for domain service class responsible for lating a movie")
-class LendMovieServiceTest {
+class RateMovieServiceTest {
 
     private final MovieRepository movieRepository =
             mock(MovieRepository.class);
@@ -63,7 +57,7 @@ class LendMovieServiceTest {
 //
 //    @Test
 //    @DisplayName("should not rating a movie when movie is null")
-//    void should_not_lend_a_movie_when_movie_or_student_is_null() {
+//    void should_not_rate_a_movie_when_movie_or_student_is_null() {
 //        assertThrows(
 //                InvalidMovieRatingException.class,
 //                () -> service.execute(fakeMovieRating(null, fakeStudent())),
@@ -101,8 +95,8 @@ class LendMovieServiceTest {
 //    }
 //
 //    @Test
-//    @DisplayName("should not lend a movie when movie does not exist")
-//    void should_not_lend_a_movie_when_movie_does_not_exist() {
+//    @DisplayName("should not rate a movie when movie does not exist")
+//    void should_not_rate_a_movie_when_movie_does_not_exist() {
 //        Movie movie = fakeMovie();
 //
 //        when(movieRepository.findById(movie.getId())).thenReturn(Optional.empty());
@@ -115,8 +109,8 @@ class LendMovieServiceTest {
 //    }
 //
 //    @Test
-//    @DisplayName("should not lend a movie when student does not exist")
-//    void should_not_lend_a_movie_when_student_does_not_exist() {
+//    @DisplayName("should not rate a movie when student does not exist")
+//    void should_not_rate_a_movie_when_student_does_not_exist() {
 //        Movie movie = fakeMovie();
 //        Student student = fakeStudent();
 //
@@ -131,8 +125,8 @@ class LendMovieServiceTest {
 //    }
 //
 //    @Test
-//    @DisplayName("should not lend a movie when movie is already lent")
-//    void should_not_lend_a_movie_when_movie_is_already_lent() {
+//    @DisplayName("should not rate a movie when movie is already lent")
+//    void should_not_rate_a_movie_when_movie_is_already_lent() {
 //        Movie movie = fakeMovie();
 //        Student student = fakeStudent();
 //
