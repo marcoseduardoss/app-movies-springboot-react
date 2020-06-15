@@ -1,0 +1,12 @@
+
+
+
+body .p-tabview.p-tabview-top .p-tabview-nav li.p-tabview-selected a, body .p-tabview.p-tabview-bottom .p-tabview-nav li.p-tabview-selected a, body .p-tabview.p-tabview-left .p-tabview-nav li.p-tabview-selected a, body .p-tabview.p-tabview-right .p-tabview-nav li.p-tabview-selected a{
+
+    background-color: brown;
+    border: 1px solid brown;
+}
+
+.input-rating{
+    padding-top: 5px;
+}
