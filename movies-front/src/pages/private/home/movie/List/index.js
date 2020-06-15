@@ -49,7 +49,7 @@ const MovieItem = (props) => {
   return (
 
     <tr >
-        <td><img src={movie.thumbnail} title="Capa"/></td>
+        <td><img src={movie.thumbnail} title="Capa" height="125px" width="185px" /></td>
         
         <td  > {movie.title}</td>
 

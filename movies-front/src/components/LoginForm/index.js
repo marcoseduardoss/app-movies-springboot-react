@@ -17,17 +17,19 @@ export default () => {
   return (
     <div>
       <form onSubmit={handleSubmit(enviarContato)}  >
+        
         <input
           onChange={handleChange}
           type="text"
           name="username"
-          placeholder="Usuário"
+
+          placeholder="Usuário: admin"
         />
         <input
           onChange={handleChange}
           type="password"
           name="password"
-          placeholder="Senha"
+          placeholder="Senha: 123"
         />    
         
           <button type="submit">{loading ? "Enviando..." : "Enviar"}</button>
