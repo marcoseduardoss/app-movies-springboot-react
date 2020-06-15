@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MovieNotFoundException extends RuntimeException {
 
     public MovieNotFoundException(Long id) {
-        super("Book for ID " + id + " does not exist.");
+        super("Movie for ID " + id + " does not exist.");
     }
-
+    public MovieNotFoundException(String msg) {
+        super(msg);
+    }
+    
+    
 }

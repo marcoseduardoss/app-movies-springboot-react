@@ -19,7 +19,7 @@ public class NewMovie {
 	
 //	public NewMovie(Movie movie) {
 //        this.id = movie.getId();
-//        this.title = movie.getTitle();
+//        this.title = movie.getTitle();	
 //        this.synopsis = movie.getSynopsis();
 //        this.protagonists = movie.getProtagonists();
 //        this.producer = movie.getProducer();
