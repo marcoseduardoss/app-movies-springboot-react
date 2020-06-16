@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./movieEdit.css";
 import Api from "./../../../../../api/api";
-import useForm from "../../../../../hooks/useForm";
 import useGetMovie from "../../../../../hooks/useGetMovie";
-import ImageUpload from "../../../../../components/ImageUpload";
 import createBrowserHistory from 'history/createBrowserHistory';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import ReactDOM from 'react-dom'; 
+import useAddMovieForm from "../../../../../hooks/useAddMovieForm";
 
 const history = createBrowserHistory({ forceRefresh: true });
 //history.push("/"); 
@@ -15,33 +13,38 @@ const history = createBrowserHistory({ forceRefresh: true });
 const MovieEdit = (props) => {
   
 
-  const [movieIn, isLoading, error, fetchMovie] = useGetMovie(props.id);
+  const [movieIn, isLoading, error, fetchMovie] =  useGetMovie(props.id);
+  const [ {values, loading}, handleChange, handleSubmit, _fetchMovie] = useAddMovieForm();
+
+ /* 
+  const [title, setTitle] = useState(movieIn.title );
+  const [synopsis, setSynopsis] = useState(movieIn.synopsis );
+  const [protagonists, setProtagonists] = useState(movieIn.protagonists );
+  const [producer, setProducer] = useState(movieIn.producer );
+  const [year, setYear] = useState(movieIn.year );
+  const [thumbnail, setThumbnail] = useState(movieIn.thumbnail );
+  const [thumbnail, setThumbnail] = useState('');
+*/
 
   const [title, setTitle] = useState('');
   const [synopsis, setSynopsis] = useState('');
   const [protagonists, setProtagonists] = useState('');
   const [producer, setProducer] = useState('');
   const [year, setYear] = useState('');
-  const [thumbnail, setThumbnail] = useState('');
 
-   const saveOrUpdate = () => {
-
-    
-
-    if (props.id != null)
-      update();
-    else
-      save();
-
-  }
-
-  const update = () => {
+  const enviar = () => {
     try {
 
-      
-      let movie = {
-        "title": title, "synopsis": synopsis, "protagonists": protagonists,
-        "producer": producer, "year": year, "thumbnail": thumbnail
+      let form = document.forms[0]; 
+      let input = form.elements; 
+
+     let movie = {
+        "title": input.title.value, 
+        "synopsis": input.synopsis.value  , 
+        "protagonists": input.protagonists.value,
+        "producer": input.producer.value, 
+        "year": input.year.value, 
+        "thumbnail": input.thumbnail.value
       }
 
       let saved = Api.updateMovie(props.id, movie);
@@ -54,46 +57,28 @@ const MovieEdit = (props) => {
       alert(e.message);
     }
   }
-
-  const save = () => {
-    try {
-
-      let movie = {
-        "title": title, "synopsis": synopsis, "protagonists": protagonists,
-        "producer": producer, "year": year, "thumbnail": thumbnail
-      }
-
-      let saved = Api.saveMovie(movie);
-
-      alert('Objeto incluído com sucesso!')
-
-      history.push("/");
-
-    } catch (e) {
-      alert(e.message);
-    }
-  };
-
   
   return (
     <div align="center">
 
       
-      <form onSubmit={saveOrUpdate}  >
+      <form id="my" onSubmit={handleSubmit(enviar)}  >
 
+          <h1>Alteração de Filme</h1>
   
-          <div align="left" style={{padding: "50px"}}> 
+          <div align="left" style={{paddingLeft: "50px"}}> 
 
-          {(props.id != null) ? 'ID: ' + props.id : ''}
+          {props.id}
 
           <br /> <br />
 
           <InputText name="title"
             type="text"
-            size={30}
             defaultValue={movieIn.title}
+            size={30}            
             placeholder="Título"
-            onChange={(e) => setTitle(e.target.value)} />
+            onChange={handleChange}
+            />
 
           <br /><br />
 
@@ -102,51 +87,56 @@ const MovieEdit = (props) => {
             autoResize={true}
             defaultValue={movieIn.synopsis}
             placeholder="Sinopse do filme"
-            onChange={(e) => setSynopsis(e.target.value)}></InputTextarea>
+            onChange={handleChange}
+            ></InputTextarea>
 
           <br /><br />
 
-          <InputText name="Protagonistas"
-            type="text"
-            size={30}
+          <InputText name="protagonists"
             defaultValue={movieIn.protagonists}
+            type="text"
+            size={30}
             placeholder="Protagonistas"
-            onChange={(e) => setProtagonists(e.target.value)} />
+            onChange={handleChange}
+            />
 
           <br /><br />
 
 
-          <InputText name="Thumbnail"
+          <InputText name="thumbnail"
+            defaultValue={movieIn.thumbnail}
             type="text"
             size={30}
-            defaultValue={movieIn.thumbnail}
             placeholder="URL da imagem"
-            onChange={(e) => setThumbnail(e.target.value)} />
+            onChange={handleChange}
+            />
 
           <br /><br />
           
 
           <InputText name="producer"
+           defaultValue={movieIn.producer}
             type="text"
             size={30}
-            defaultValue={movieIn.producer}
             placeholder="Produtor"
-            onChange={(e) => setProducer(e.target.value)} />
+            onChange={handleChange}
+            />
 
           <br /><br />
 
           <InputText name="year"
+            defaultValue={movieIn.year}
             type="text"
             size={30}
-            defaultValue={movieIn.year}
             placeholder="Ano"
-            onChange={(e) => setYear(e.target.value)} />
+            onChange={handleChange}
+            />
 
 
           <br /><br />
 
           
-          <button type="submit">Salvar</button>
+          <button type="submit">{loading ? "Enviando..." : "Enviar"}</button>
           
           <br /><br />
 

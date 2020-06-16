@@ -22,7 +22,6 @@ export default () => {
           onChange={handleChange}
           type="text"
           name="username"
-
           placeholder="Usuário: admin"
         />
         <input

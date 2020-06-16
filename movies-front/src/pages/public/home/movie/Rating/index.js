@@ -81,7 +81,7 @@ export default () => {
           
           </TabPanel>
           <TabPanel header="Informações Adicionais" rightIcon="pi pi-info-circle" disabled={true}>
-            <p>todo: incluir mensagens postadas aqui</p>
+            <p>todo: incluir informações adicionais aqui</p>
           </TabPanel>
           <TabPanel header="Histórico de Avaliações" rightIcon="pi pi-comment" disabled={true}>
             <p>todo: incluir mensagens postadas aqui</p>

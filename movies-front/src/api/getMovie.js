@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const getUser = (id, onSuccess, onError) => {
-  axios.get('http://localhost:8080/movies/'+id)
+const getUser = async  (id, onSuccess, onError) => {
+  await axios.get('http://localhost:8080/movies/'+id)
   .then(onSuccess)
   .catch(onError);
   

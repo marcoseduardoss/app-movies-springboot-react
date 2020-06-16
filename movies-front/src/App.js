@@ -3,6 +3,7 @@ import {useRoutes} from 'hookrouter';
 import MoviesListPublicAccess from './pages/public/home/movie/List';
 import MoviesListPrivateAccess from './pages/private/home/movie/List';
 import MovieEdit from './pages/private/home/movie/Edit';
+import MovieAdd from './pages/private/home/movie/Add';
 import MovieDetails from './pages/public/home/movie/Detail';
 import NotFound from './components/NotFound';
 import About from './pages/public/About';
@@ -12,7 +13,7 @@ import {isAuthenticated} from './Auth'
 const  privateRoutes = {
   '/about': () => <About  />,
   '/movie/edit/:id': ({id}) => <MovieEdit id={id} />,
-  '/movie/add': () => <MovieEdit id={null}/>,
+  '/movie/add': () => <MovieAdd />,
   '/': () => <MoviesListPrivateAccess  />
 };
 
