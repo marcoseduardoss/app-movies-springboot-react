@@ -39,12 +39,12 @@ const MovieEdit = (props) => {
       let input = form.elements; 
 
      let movie = {
-        "title": input.title.value, 
-        "synopsis": input.synopsis.value  , 
         "protagonists": input.protagonists.value,
-        "producer": input.producer.value, 
-        "year": input.year.value, 
-        "thumbnail": input.thumbnail.value
+        "thumbnail"   : input.thumbnail.value,
+        "producer"    : input.producer.value,  
+        "synopsis"    : input.synopsis.value, 
+        "title"       : input.title.value,
+        "year"        : input.year.value
       }
 
       let saved = Api.updateMovie(props.id, movie);
