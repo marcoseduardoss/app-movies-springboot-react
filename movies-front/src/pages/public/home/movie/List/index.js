@@ -1,4 +1,3 @@
-
 import React from "react";
 import './list.css'
 import useListMovies from './../../../../../hooks/useListMovies';
@@ -30,47 +29,46 @@ const MovieItem = (props) => {
   return (
 
     <article>
-        <strong>{movie.title}</strong>
+      <strong>{movie.title}</strong>
 
-        <Rating value= {movie.score} readonly={true} stars={5} cancel={false} />
-       
-        
-        <img width="700px" height="400px" src={movie.thumbnail} title="Capa"/>
-        
-        <a href={"/movie/"+movie.id}>Acessar</a> 
+      <Rating value={movie.score} readonly={true} stars={5} cancel={false} />
+
+      <img width="700px" height="400px" src={movie.thumbnail} alt="Capa" />
+
+      <a href={"/movie/" + movie.id}>Acessar</a>
     </article>
   );
 
 }
 
 const ListMoviesTable = (props) => {
- 
+
   const { movies } = props;
-  
+
   return (<div className="container">
-      
-          <div  className="listafilmes">            
-            {
-              movies.map(movie => <MovieItem key={movie.id} movie={movie} />)
-            }
-          
-        </div>
+
+    <div className="listafilmes">
+      {
+        movies.map(movie => <MovieItem key={movie.id} movie={movie} />)
+      }
+
     </div>
+  </div>
 
   );
 }
 
 function MoviesListPublicAccess() {
 
-  const [movies, isLoading, error, fetchMovies] = useListMovies();
+  const [movies, isLoading, error] = useListMovies();//, fetchMovies
 
 
   return <div className="home">
-    
-    
-    {        
-        error ? <Error message={error} /> : 
-        (isLoading ? <LoadingMessage /> : <ListMoviesTable movies={movies} /> )
+
+
+    {
+      error ? <Error message={error} /> :
+        (isLoading ? <LoadingMessage /> : <ListMoviesTable movies={movies} />)
     }
 
   </div>;

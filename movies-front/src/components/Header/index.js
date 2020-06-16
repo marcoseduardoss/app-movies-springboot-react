@@ -24,7 +24,7 @@ const  logout = () => {
           </div>
           <div className="header-dir" >          
             {
-            ( !isAuthenticated() ? <LoginForm /> : <a onClick={logout}> Sair </a>)
+            ( !isAuthenticated() ? <LoginForm /> : <a href="#" onClick={logout}> Sair </a>)
             }
           </div>
       </div>

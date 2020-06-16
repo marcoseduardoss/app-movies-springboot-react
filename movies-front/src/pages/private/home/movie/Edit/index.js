@@ -1,36 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./movieEdit.css";
 import Api from "./../../../../../api/api";
 import useGetMovie from "../../../../../hooks/useGetMovie";
 import createBrowserHistory from 'history/createBrowserHistory';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import useAddMovieForm from "../../../../../hooks/useAddMovieForm";
+import useForm from "../../../../../hooks/useForm";
 
 const history = createBrowserHistory({ forceRefresh: true });
-//history.push("/"); 
 
-const MovieEdit = (props) => {
-  
+const MovieEdit = (props) => {  
 
   const [movieIn, isLoading, error, fetchMovie] =  useGetMovie(props.id);
-  const [ {values, loading}, handleChange, handleSubmit, _fetchMovie] = useAddMovieForm();
-
- /* 
-  const [title, setTitle] = useState(movieIn.title );
-  const [synopsis, setSynopsis] = useState(movieIn.synopsis );
-  const [protagonists, setProtagonists] = useState(movieIn.protagonists );
-  const [producer, setProducer] = useState(movieIn.producer );
-  const [year, setYear] = useState(movieIn.year );
-  const [thumbnail, setThumbnail] = useState(movieIn.thumbnail );
-  const [thumbnail, setThumbnail] = useState('');
-*/
-
-  const [title, setTitle] = useState('');
-  const [synopsis, setSynopsis] = useState('');
-  const [protagonists, setProtagonists] = useState('');
-  const [producer, setProducer] = useState('');
-  const [year, setYear] = useState('');
+  const [ {values, loading}, handleChange, handleSubmit, _fetchMovie] = useForm();
 
   const enviar = () => {
     try {
@@ -47,7 +29,7 @@ const MovieEdit = (props) => {
         "year"        : input.year.value
       }
 
-      let saved = Api.updateMovie(props.id, movie);
+      let updated = Api.updateMovie(props.id, movie);
 
       alert('Edição realizada com sucesso!')
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useForm from "../../../../../hooks/useForm";
 import Api from "../../../../../api/api";
 import "./rating.css";
 
@@ -9,7 +8,6 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Button } from 'primereact/button';
-import { ProgressBar } from 'primereact/progressbar';
 
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -21,7 +19,7 @@ const history = createBrowserHistory({ forceRefresh: true });
 //history.push("/"); 
 
 
-export default () => {
+export default (props) => {
   
   const [score, setScore] = useState(0);
   const [comment, setComment] = useState("");
@@ -31,7 +29,7 @@ export default () => {
     e.preventDefault();
 
     let rating = {
-      "idMovie": 2,
+      "idMovie": props.id,
       "score": score,
       "author": author,
       "comment": comment
@@ -70,8 +68,7 @@ export default () => {
               <div className="p-field p-col-12">
                 <InputTextarea value={comment} name="comment"
                   rows={5} cols={80}
-                  autoResize={true}
-                  required={true}
+                  autoResize={true}                  
                   placeholder="Comente o filme aqui"
                   onChange={(e) => setComment(e.target.value)}></InputTextarea>
               </div>

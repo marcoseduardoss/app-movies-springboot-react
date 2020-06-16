@@ -28,8 +28,6 @@ const Error = (props) => {
   );
 }
 
-
-
 function MovieDetails(props) {
 
   const { id } = props;
@@ -45,7 +43,7 @@ function MovieDetails(props) {
 
         <h1>{movie.title}</h1>
 
-        <img src={movie.thumbnail} title="Capa" />
+        <img src={movie.thumbnail} alt="Capa" />
         
         <div className="p-grid">
           <div className="p-col"><h3> Sinopse</h3></div>
@@ -58,7 +56,9 @@ function MovieDetails(props) {
         </div>
 
         <div >{movie.synopsis} </div>
-        <div><RatingForm /></div>
+        <div>
+            <RatingForm id={movie.id} />
+        </div>
 
       </div>
     </div>

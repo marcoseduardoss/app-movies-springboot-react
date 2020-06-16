@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Api from "./../api/api";
 
 export default (callback) => {
     
@@ -21,5 +20,3 @@ export default (callback) => {
 
   return [{ values, loading }, handleChange, handleSubmit];
 };
-
-//export default useRatingForm;
