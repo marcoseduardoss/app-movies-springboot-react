@@ -17,16 +17,13 @@ const MovieEdit = (props) => {
   const enviar = () => {
     try {
 
-      let form = document.forms[0]; 
-      let input = form.elements; 
-
      let movie = {
-        "protagonists": input.protagonists.value,
-        "thumbnail"   : input.thumbnail.value,
-        "producer"    : input.producer.value,  
-        "synopsis"    : input.synopsis.value, 
-        "title"       : input.title.value,
-        "year"        : input.year.value
+        "protagonists": getFormValue("protagonists"),
+        "thumbnail"   : getFormValue("thumbnail"),
+        "producer"    : getFormValue("producer"),  
+        "synopsis"    : getFormValue("synopsis"), 
+        "title"       : getFormValue("title"),
+        "year"        : getFormValue("year"),
       }
 
       let updated = Api.updateMovie(props.id, movie);
@@ -40,11 +37,21 @@ const MovieEdit = (props) => {
     }
   }
   
+  const getFormValue = (inputName) => {
+    return getValue(inputName, "idMovieForm");
+  }
+  
+  const getValue = (inputName, idForm) => {
+    let form = document.forms[idForm]; 
+    let input = form.elements[inputName];     
+    return input.value;
+  }
+  
   return (
     <div align="center">
 
       
-      <form id="my" onSubmit={handleSubmit(enviar)}  >
+      <form id="idMovieForm" onSubmit={handleSubmit(enviar)}  >
 
           <h1>Alteração de Filme</h1>
   
