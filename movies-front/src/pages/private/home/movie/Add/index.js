@@ -29,7 +29,7 @@ const MovieEdit = (props) => {
 
       let saved = Api.saveMovie(movie);
 
-      alert('Objeto '+saved+' incluído com sucesso!')
+      alert('Objeto '+saved.id+' incluído com sucesso!')
 
       history.push("/");
 

@@ -51,7 +51,15 @@ const MovieItem = (props) => {
     <tr >
       <td><img src={movie.thumbnail} title="Capa" height="125px" width="185px" alt="foto" /></td>
 
-      <td  > {movie.title}</td>
+      <td  >
+        <p>
+          <div className="movie-descriptons">{movie.title}</div>
+          <div className="movie-descriptons">{movie.producer}</div>          
+          <div className="movie-descriptons">{movie.year}</div>
+          <div className="movie-descriptons" >Id: {movie.id}</div>
+          
+        </p> 
+      </td>
 
       <td><button id={movie.id} onClick={handleRemoveItem} >Remover</button></td>
       <td><button id={movie.id} onClick={handleEditItem} >Alterar</button></td>

@@ -20,3 +20,8 @@
 .movie-detail img{
     border-radius: 30px;
 }
+.movie-descriptons{
+    font-size: 13px;
+    padding-top: 5px;
+    padding-right: 10px;
+}

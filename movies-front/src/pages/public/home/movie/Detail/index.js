@@ -14,7 +14,7 @@ const LoadingMessage = () => {
 
   return (
     <p>
-      Loading data, please wait...
+      Carregando dados, por favor aguarde...
     </p>
   );
 }
