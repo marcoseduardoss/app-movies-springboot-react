@@ -42,7 +42,7 @@ const MovieEdit = (props) => {
   }
   
   const getValue = (inputName, idForm) => {
-    let form = document.forms[idForm]; 
+    let form  = document.forms[idForm]; 
     let input = form.elements[inputName];     
     return input.value;
   }

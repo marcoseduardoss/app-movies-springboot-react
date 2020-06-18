@@ -45,7 +45,7 @@ public class MovieController {
 	@GetMapping(produces = APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<NewMovie>> getAll() {
 
-		List<Movie> movies = repository.findAll();
+		List<Movie> movies = repository.findAllByOrderByIdAsc();
 
 		return ResponseEntity.ok(movies.stream().map(movie -> {return movie.toDomain();}).collect(toList()));
 		
