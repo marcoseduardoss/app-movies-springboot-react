@@ -9,7 +9,7 @@ Aluno: Marcos Eduardo da Silva Santos
 Requistos:
 - US01 - COMO UM usuário, EU QUERO ver uma lista de filmes cearenses PARA que eu possa conhecer filmes gravados no Ceará ou que possuem algum ator, diretor ou produtor cearense;
 - US02 - COMO UM usuário, EU QUERO avaliar os filmes PARA que eu possa saber como estão classifcados os filmes; 
-- US03 - COMO UM Administrador do sistema, EU QUERO controlar os filmes PARA que eu possa listar, incluir novos, alterá-los ou excluí-los.
+- US03 - COMO UM Administrador do sistema, EU QUERO controlar os filmes PARA que eu possa listar, alterar, excluir e incluir novos filmes.
 
 ## Technologies:
 
