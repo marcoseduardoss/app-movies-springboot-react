@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@types/hookrouter": "^2.2.2",
     "@types/react-transition-group": "^4.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "hookrouter": "^1.2.3",
     "primeflex": "^1.1.1",
